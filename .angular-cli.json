@@ -21,7 +21,14 @@
       "styles": [
         "styles.sass"
       ],
-      "scripts": [],
+      "scripts": [
+        "assets/appjs/jquery-2.2.4.js",
+        "assets/appjs/jquery-ui.js",
+        "assets/appjs/price.js",
+        "../node_modules/bootstrap-sass/assets/javascripts/bootstrap.js",
+        "assets/appjs/script.js"
+        
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

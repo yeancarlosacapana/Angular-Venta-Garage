@@ -1,1 +1,24 @@
-/* You can add global styles to this file, and also import other style files */
+@import "/assets/bootstrap-sass/variable";
+@import '../node_modules/bootstrap-sass/assets/stylesheets/bootstrap';
+
+//variables
+
+$primary-color: #FFD015;
+$second-color: #3A2B01;
+$fondo: #F0F0F0;
+$third-color: #FFF; 
+$rgba-transparente : rgba(255,198,58,.8);
+body
+    background: $fondo;
+    margin: 0
+    padding: 0
+body::-webkit-scrollbar-thumb
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3)
+    background-color: $primary-color
+
+body::-webkit-scrollbar
+    width: 2px
+    background: linear-gradient(90deg,#e9e9e9 0,#fbfbfb 31%,#fbfbfb 70%,#e9e9e9)
+
+    

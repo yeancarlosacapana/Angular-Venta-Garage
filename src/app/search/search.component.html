@@ -1,0 +1,8 @@
+<form  class="form" name="frmSearch" (keyup.enter)="verificarEnter($event)">
+    <div class="input-group input-group-md">   
+      <input type="text" class="form-control" placeholder="Busqueda de Producto" [(ngModel)]="product_name" name="product_name" required>
+      <div class="input-group-btn">
+        <button class="btn btn-buscar" type="submit" (click)="buscar(product_name)"><i class="glyphicon glyphicon-search"></i></button>
+      </div>
+    </div>
+  </form> 

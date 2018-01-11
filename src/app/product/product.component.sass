@@ -1,0 +1,53 @@
+$blanco : #FFF;
+$colorBottom : #FFD015;
+.contenedor-lista-producto
+    padding: 0
+    display: flex
+    flex-wrap: wrap
+    justify-content: center
+
+    .content-product
+        margin: 2% 0
+
+        .contenedor-product
+            background: $blanco
+            border-radius: .7em
+            
+            .img-productos
+                border-radius: .7em
+
+            .contenedor-price-condicion
+                display: flex
+                justify-content: space-between
+                align-items: center
+                padding: 0 1em
+                
+                .price
+                    color: $colorBottom
+                    font-family: gothambold
+                    font-size: 16pt
+                    font-weight: bold
+                    text-align: left
+
+                .condicion
+                    font-weight: bold
+                     
+.contenedor-precio
+    display: flex
+    justify-content: center
+    margin: .5em 0
+
+    .txt-filtrar
+        width: 100%
+        max-width: 40%
+.pagination
+    display: flex
+    justify-content: flex-end
+         
+.btn
+    background : $colorBottom
+    color: $blanco
+.enlace-product
+    color: initial
+    text-decoration: none
+    display: inline-block

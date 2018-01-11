@@ -1,0 +1,79 @@
+<form enctype="multipart/form-data" class="form-post">
+  <div class="col-lg-4">
+          <div class="form-group contenedor-carga-categoria ">
+              <label>Seleccione Categoria</label>
+              <!-- <div class="svg svg-sucategoria"><img src="/img/subcategorias.svg" alt=""></div>
+              <div class="svg svg-indicador"><img src="/img/indicador.svg" alt=""></div> -->
+              <select name="id_category_default"  class="form-control" [(ngModel)]='addProduct.id_category_default'>
+                  <option *ngFor="let category of listarAllCategory" 
+                          [value]="category.id_category">
+                        {{category.category_lang.name}}
+                  </option>
+              </select> 
+          </div>
+          <div class="form-group">
+            <label for="">Nombre Product</label>
+            <input type="text" name="name" class="form-control" [(ngModel)]='addProduct.productLang.name'>
+          </div>
+          <div class="form-group">
+              <p>Ingrese fotos del inmueble</p>
+              <span>No incluyas logos,banners,textos promocionales,bordes ni marca de agua</span>
+              <div class="col-lg-12 contenedor-cargado-img">
+                  
+                  <div class="col-lg-8 contenedor-img-principal">
+                      <input name="image" id="file-input" type="file" class="file" [(ngModel)]='addProduct.image.image' />
+                      <img src="http://placehold.it/150x150&text=zero" class="img-responsive img-principal" id="img-principal" >
+                  </div>
+                  <div class="col-lg-4 contenedor-img-segundarias">
+                      <div class="contenedor-img-segundaria">
+                          <input type="file" name="image1" id="file-input1" class="file" [(ngModel)]='addProduct.image.image'/>    
+                          <img src="http://placehold.it/150x150&text=1" class="img-responsive img-segundaria" id="img-secundaria1">
+                      </div>
+                      <div class="contenedor-img-segundaria">
+                          <input type="file" name="image2" id="file-input2" class="file" [(ngModel)]='addProduct.image.image'/>
+                          <img src="http://placehold.it/150x150&text=2" class="img-responsive img-segundaria" id="img-secundaria2">
+                      </div> 
+                  </div>
+              </div>   
+          </div>
+  </div>
+  <div class="col-lg-4">
+      <div class="form-group">
+          <label>Descripcion del Producto</label>
+          <textarea class="form-control"  rows="7" name="descripcion" id="descripcion" name="description"[(ngModel)]='addProduct.productLang.description'>
+
+          </textarea>
+      </div>
+      <div class="form-group form-inline">
+          <label for="precio">Precio</label>
+          <input type="number" name="price" id="precio" class="form-control frm-precio" [(ngModel)]='addProduct.price'>
+      </div>
+      <div class="form-group ">
+          <label for="">Condición de producto</label>
+          <div class="radio">
+              <label><input type="radio" name="condition" value="used" [(ngModel)]='addProduct.condition'>USADO</label>
+          </div>
+          <div class="radio">
+              <label><input type="radio" name="condition" value="refurbished" [(ngModel)]='addProduct.condition'>REACONDICIONADO</label>
+          </div>    
+      </div>
+  </div>
+  <div class="col-lg-4">
+      <p>Metodo de Publicación</p>
+      <div class="form-group ">
+              <div class="radio">
+                  <label><input type="radio" name="pago" value="free" [(ngModel)]='addProduct.pago'>GRATIS</label>
+                  <p><a href="#">mas información</a></p>
+              </div>
+              <div class="radio">
+                  <label><input type="radio" id="costo" name="pago" value="cost" [(ngModel)]='addProduct.pago'>COSTO</label>
+                  <p><a href="#">mas información</a></p>
+              </div> 
+              <div class="checkbox">
+                  <label><input type="checkbox">Acepta nuestros <span class="terminos">términos y condiciones</span></label>
+              </div>
+              <button type="button" class="form-control btn-block btn-publicar" (click)='grabar()'>PUBLICAR PRODUCTO</button>   
+      </div>
+  </div>
+</form>
+

@@ -1,0 +1,111 @@
+<div class="header col-lg-l2">
+  <!-- <div class="container"> -->
+<div class="contenedor-logos col-lg-6">
+<div class="logo col-lg-6">
+  <a [routerLink]="['/']"><img src="assets/img/logo.svg" class="img-logo img-responsive"></a>
+</div>
+<div class="sub-logo col-lg-3">
+  <img src="assets/img/garage.svg" class="img-logo img-responsive">
+</div>
+</div> 
+<div class="busqueda col-lg-4 ">
+<app-search></app-search>
+</div>             
+<div class="registro-login col-lg-2">
+  <a href="" class="registrate" data-toggle="modal" data-target="#registrar">Registrate</a>/
+  <a class="ingresa" data-toggle="modal" data-target="#login">Ingresa</a>
+  <a [routerLink]="['/postproduct/:id_customer']" class="display:none;"></a> 
+  <div class="icon-user"></div>
+</div>
+<!-- modal  -->
+<div id="login" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+  
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title modal-active">Iniciar Sesión</h4>
+        </div>
+        <div class="modal-body modal-inicio">
+                <form action="">
+                    <div class="form-group">
+                        <label for="direccion">Correo Electronico</label>
+                        <input type="email" class="form-control" id="direccion">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Contraseña</label>
+                        <input type="password" class="form-control" id="password">
+                    </div>
+                    <button type="submit" class="btn  btn-block">Iniciar Sesión</button>
+                    <button class="btn btn-info" (click)="signInWithFB()">Facebook</button>
+                    <button class="btn btn-warning" (click)="sigInWithGoogle()">Google</button>                               
+                </form>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+<!-- cierre modal -->
+<!-- modal  -->
+<div id="registrar" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+  
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title modal-active">Registrarse</h4>
+        </div>
+        <div class="modal-body modal-registro">
+                <form action="">
+                    <div class="form-group col-lg-6">
+                        <label>Nombres</label>
+                        <input type="text" class="form-control" name="firstname" [(ngModel)]='customer.firstname'>
+                    </div>
+                    <div class="form-group col-lg-6">
+                        <label>Apellidos</label>
+                        <input type="text" class="form-control" name="lastname" [(ngModel)]='customer.lastname'>
+                    </div>
+                    <div class="form-group col-lg-6">
+                      <label>Ciudad</label>
+                      <input type="text" class="form-control" name="city" [(ngModel)]='customer.address.city'>
+                    </div>
+                    <div class="form-group col-lg-6">
+                        <label>DNI</label>
+                        <input type="text" class="form-control" name="dni" [(ngModel)]='customer.address.dni'>
+                    </div>
+                    <div class="form-group col-lg-6">
+                        <label>Telefono</label>
+                        <input type="tel" class="form-control" name="phone" [(ngModel)]='customer.address.phone'>
+                    </div>
+                    <div class="form-group col-lg-6">
+                        <label>Celular</label>
+                        <input type="tel" class="form-control" name="phone_mobile" [(ngModel)]='customer.address.phone_mobile'>
+                    </div>
+                    <div class="form-group col-lg-6">
+                      <label>Compañia</label>
+                      <input type="text" class="form-control" name="company" [(ngModel)]='customer.company'>
+                    </div>
+                    <div class="form-group col-lg-6">
+                      <label>Dirección</label>
+                      <input type="text" class="form-control" name="address1" [(ngModel)]='customer.address.address1'>
+                    </div>
+                    <div class="form-group col-lg-6">
+                        <label>Correo Electronico</label>
+                        <input type="email" class="form-control" name="email" [(ngModel)]='customer.email'>
+                    </div>
+                    <div class="form-group col-lg-6">
+                        <label>Contraseña</label>
+                        <input type="password" class="form-control" name="passwd" [(ngModel)]='customer.passwd'>
+                    </div>
+                    
+                    <button type="button" class="btn  btn-block" (click)='grabar()' >Register</button>                                
+                </form>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+<!-- cierre modal -->
+</div>

@@ -1,0 +1,58 @@
+$fondo: rgb(255,198,58) ;
+$transparente: .8 ;
+$blanco: rgb(255,255,255) ;
+$color: #3a2b01 ;
+.categorias
+    display: flex
+    flex-wrap: wrap
+    padding: 2% 0
+
+.enlace-caption
+    position: relative
+    display: block
+    cursor: pointer
+    margin: 0 auto
+    width: 100%
+.caption
+    position: absolute
+    width: 100%
+    height: 100%
+    -webkit-transition: all ease .5s
+    -moz-transition: all ease .5s
+    transition: all ease .5s
+    opacity: .8
+    background: rgba($blanco,$transparente)
+    z-index: 2
+    top: 0
+    border-top-left-radius: 1.5em
+    border-bottom-right-radius: 1.5em
+
+.img-caption
+    border-top-left-radius: 1.5em
+    border-bottom-right-radius: 1.5em
+  
+.caption-content
+    position: absolute
+    top: 0
+    width: 100%
+    height: 100%
+    margin-top: -12px
+    text-align: center
+    color: $color
+    text-transform: uppercase
+    font-size: 2em
+    font-weight: bold
+    display: flex
+    align-items: center
+    justify-content: center
+  
+.caption:hover 
+    opacity: 1
+    background: rgba($fondo,$transparente)
+
+.caption-content:hover 
+    font-size: 2.5em
+    color: $blanco
+    -webkit-transition: all ease .5s
+    -moz-transition: all ease .5s
+    transition: all ease .5s
