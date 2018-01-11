@@ -5,7 +5,8 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class ServicioService {
   //creandp variable
-  private Url:string = "http://127.0.0.1:8000/api/";
+  //private Url:string = "http://127.0.0.1:8000/api/";
+  private Url:string = "http://apigarage.hogaryspacios.com/api/";
   
   constructor(private http:Http) { 
     let host = location.hostname+':'+location.port;
@@ -15,7 +16,7 @@ export class ServicioService {
     return this.http.get(this.Url+'slider');
   }
   public getCategory() {
-    return this.http.get(this.Url);
+    return this.http.get(this.Url+"category");
   }
   public getProductByIdCategory(id_category){
     return this.http.get(this.Url+'itemCategory/'+id_category);
