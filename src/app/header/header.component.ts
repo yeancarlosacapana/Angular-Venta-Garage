@@ -22,10 +22,11 @@ export class HeaderComponent implements OnInit {
   constructor(private appService:ServicioService,private authService:AuthService) { }
 
   ngOnInit() {
-    // this.authService.authState.subscribe((user)=>{
-    //   this.user = user;
-    //   this.loggedIn = (user != null);
-    // });
+    this.authService.authState.subscribe((user)=>{
+      this.user = user;
+      this.loggedIn = (user != null);
+      console.log(this.user);
+    });
   }
   grabar(){
     console.log(this.customer);

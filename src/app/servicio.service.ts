@@ -8,10 +8,7 @@ export class ServicioService {
   //private Url:string = "http://127.0.0.1:8000/api/";
   private Url:string = "http://apigarage.hogaryspacios.com/api/";
   
-  constructor(private http:Http) { 
-    let host = location.hostname+':'+location.port;
-    console.log(host);
-  }
+  constructor(private http:Http) { }
   public getSlider(){
     return this.http.get(this.Url+'slider');
   }
