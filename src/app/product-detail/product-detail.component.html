@@ -1,13 +1,13 @@
-<div class="container" *ngFor="let detail of detailProduct">
+<div class="container">
     <div class="col-lg-4">
-        <h4>{{detail.name}}</h4>
-        <span class="item-price">S/{{detail.price}}</span>
+        <h4>{{detailProduct.producto}}</h4>
+        <span class="item-price">S/{{detailProduct.price}}</span>
         <div class="contenedor-item-condicion">
             <label class="text-item-condicion">Condición</label>
-            <span class="item-condicion">{{detail.condition |uppercase}}</span>
+            <span class="item-condicion">{{detailProduct.condition |uppercase}}</span>
         </div>
         <div class="descripcion-item">
-            <p>{{detail.description}}</p>
+            <p>{{detailProduct.descripcion}}</p>
         </div>
         <div class="contenedor-btn-contact">
             <button type="submit" class="btn btn-block btn-contactar-vendedor">CONTACTAR CON VENDEDOR</button>
@@ -22,18 +22,10 @@
                     <div class="col-sm-3" id="slider-thumbs">
                         <!-- Bottom switcher of slider -->
                         <ul class="hide-bullets">
-                            <li class="col-sm-12">
-                                <a class="thumbnail" id="carousel-selector-0">
-                                    <img src="http://placehold.it/150x150&text=zero">
+                            <li class="col-sm-12" *ngFor="let image of detailProduct.image;let i = index;">
+                                <a #elemLink class="thumbnail item-carrousel" id="carousel-selector-{{i}}" (click)="cambiarVistaCarousel(elemLink)">
+                                    <img [src]="image.urlImage">
                                 </a>
-                            </li>
-        
-                            <li class="col-sm-12">
-                                <a class="thumbnail" id="carousel-selector-1"><img src="http://placehold.it/150x150&text=1"></a>
-                            </li>
-        
-                            <li class="col-sm-12">
-                                <a class="thumbnail" id="carousel-selector-2"><img src="http://placehold.it/150x150&text=2"></a>
                             </li>
                         </ul>
                     </div>
@@ -45,14 +37,8 @@
                                     <div class="carousel slide" id="myCarousel">
                                         <!-- Carousel items -->
                                         <div class="carousel-inner">
-                                            <div class="active item" data-slide-number="0">
-                                                <img src="http://placehold.it/470x480&text=zero"></div>
-        
-                                            <div class="item" data-slide-number="1">
-                                                <img src="http://placehold.it/470x480&text=1"></div>
-        
-                                            <div class="item" data-slide-number="2">
-                                                <img src="http://placehold.it/470x480&text=2"></div>
+                                            <div class="item" *ngFor="let image of detailProduct.image;let i = index;" [ngClass]="{'active':i == 0}" data-slide-number="0">
+                                                <img [src]="image.urlImage" class="img-responsive"></div>
                                         </div>
                                         <!-- Carousel nav -->
                                         <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">

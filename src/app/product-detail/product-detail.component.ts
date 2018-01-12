@@ -17,24 +17,7 @@ export class ProductDetailComponent implements OnInit,AfterViewInit {
 
   ngAfterViewInit(): void {
     jQuery(document).ready(function($) {
-          $('#myCarousel').carousel({
-                interval: 0
-          });
-      $('[id^=carousel-selector-]').click(function () {
-        var id_selector = $(this).attr("id");
-        try {
-          var id = /-(\d+)$/.exec(id_selector)[1];
-          // console.log(id_selector, id);
-          jQuery('#myCarousel').carousel(parseInt(id));
-        }catch (e) {
-        // console.log('Regex failed!', e);
-        } 
-      });
-    // When the carousel slides, auto update the text
-      $('#myCarousel').on('slid.bs.carousel', function (e) {
-        var id = $('.item.active').data('slide-number');
-          $('#carousel-text').html($('#slide-content-'+id).html());
-      });
+      $('#myCarousel').carousel({interval: 0});
     });
   }
 
@@ -51,7 +34,23 @@ export class ProductDetailComponent implements OnInit,AfterViewInit {
   }
   public get(id_product):void{
     this.AppService.getProductById(id_product).subscribe(rest=>{
+      
       this.detailProduct= rest.json();
+      console.log(this.detailProduct);
+    });
+  }
+
+  cambiarVistaCarousel(control){
+      var id_selector = $(control).attr("id");
+      try {
+        var id = /-(\d+)$/.exec(id_selector)[1];
+        jQuery('#myCarousel').carousel(parseInt(id));
+      }catch (e) {
+      // console.log('Regex failed!', e);
+      } 
+    $('#myCarousel').on('slid.bs.carousel', function (e) {
+      var id = $('.item.active').data('slide-number');
+        $('#carousel-text').html($('#slide-content-'+id).html());
     });
   }
 }
