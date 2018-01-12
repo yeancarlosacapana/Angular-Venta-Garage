@@ -5,8 +5,8 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class ServicioService {
   //creandp variable
-  //private Url:string = "http://127.0.0.1:8000/api/";
-  private Url:string = "http://apigarage.hogaryspacios.com/api/";
+  private Url:string = "http://127.0.0.1:8000/api/";
+  //private Url:string = "http://apigarage.hogaryspacios.com/api/";
   
   constructor(private http:Http) { }
   public getSlider(){

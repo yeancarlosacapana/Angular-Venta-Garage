@@ -1,7 +1,7 @@
 <div class="categorias container">
     <div class="portfolio-item col-lg-4 col-md-4 col-sm-6 col-xs-12" *ngFor="let lista of listaCategoria">
         <a [routerLink]="['/category-product','cat',lista.id_category]" class="enlace-caption">
-            <img src="https://images.pexels.com/photos/416160/pexels-photo-416160.jpeg" class="img-responsive img-caption">
+            <img src="{{lista.url}}" class="img-responsive img-caption">
             <div class="caption">
                 <div id="" class="caption-content">{{lista.category_lang.name}}</div>
             </div>
