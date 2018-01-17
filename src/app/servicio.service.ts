@@ -37,12 +37,12 @@ export class ServicioService {
     return this.http.get(this.Url+'getCategory');
   }
   public registerCustomer(oCustomer){
-    return this.http.post(this.Url+'register/',oCustomer);
+    return this.http.post(this.Url+'register',oCustomer);
   }
   public loginCustomer(oCustomer){
     return this.http.post(this.Url+'loginCustomer',oCustomer);
   }
   public postProduct(oProduct){
-    return this.http.post(this.Url+'product/',oProduct);
+    return this.http.post(this.Url+'product',oProduct);
   }
 }

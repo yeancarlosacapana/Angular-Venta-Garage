@@ -12,11 +12,15 @@
 <app-search></app-search>
 </div>             
 <div class="registro-login col-lg-2">
-  <a href="" *ngIf="!customer.is_logged" class="registrate" data-toggle="modal" data-target="#registrar">Registrate</a>/
-  <a class="ingresa" *ngIf="!customer.is_logged" data-toggle="modal" data-target="#login">Ingresa</a>
-  <a *ngIf="customer.is_logged" (click)="logout()">logout</a>
+  <a href="" *ngIf="!customer.is_logged" class="registrate" data-toggle="modal" data-target="#registrar">Registrate</a>
+  <button type="button" class="btn btn-default ingresa btn-sm" *ngIf="!customer.is_logged" data-toggle="modal" data-target="#login">
+    <span class="glyphicon glyphicon-log-in"></span> Log in
+  </button>
   <a [routerLink]="['/postproduct/:id_customer']" class="display:none;"></a> 
   <div class="icon-user"></div>
+  <button type="button" *ngIf="customer.is_logged" (click)="logout()" class="btn btn-default btn-sm">
+    <span class="glyphicon glyphicon-log-out"></span>Salir
+  </button>
 </div>
 <!-- modal  -->
 <div id="login" class="modal fade" role="dialog">
@@ -61,7 +65,7 @@
           <h4 class="modal-title modal-active">Registrarse</h4>
         </div>
         <div class="modal-body modal-registro">
-                <form action="">
+                <form>
                     <div class="form-group col-lg-6">
                         <label>Nombres</label>
                         <input type="text" class="form-control" name="firstname" [(ngModel)]='customer.firstname'>
