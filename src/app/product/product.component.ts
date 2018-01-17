@@ -39,16 +39,11 @@ export class ProductComponent implements OnInit, AfterViewInit {
   private name  : string;
   private filtertype : string;
   private sortBy : string;
-
-  
+  public listarProduct:Product[]=[];
+  public eProduct:Product = new Product();
 
   constructor(private route:ActivatedRoute , private AppService:ServicioService) { 
   }
-  public prueba :any; 
-  public listarProduct:Product[]=[];
-  public eProduct:Product = new Product();
-  public nextPageUrl:string;
-  public prevPageUrl:string;
 
   ngOnInit() {
     this.route.params.subscribe(params=>{
@@ -81,8 +76,7 @@ export class ProductComponent implements OnInit, AfterViewInit {
     });
   }
   setProduct(data: any): any {
-    this.nextPageUrl = data["next_page_url"];
-    this.listarProduct = <Product[]>data["data"];
+    this.listarProduct = <Product[]>data;
     if(this.listarProduct){
       if(this.listarProduct.length > 0)
         this.categoryName = this.listarProduct[0].category;

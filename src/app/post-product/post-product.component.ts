@@ -1,9 +1,10 @@
 import { Component, OnInit , AfterViewInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {Router,ActivatedRoute} from '@angular/router';
 import {ServicioService} from '../servicio.service';
 import {AddProduct} from '../clases/add-product';
 import {ProductLang} from '../clases/product-lang';
 import {Image} from '../clases/image';
+import { Customer } from '../clases/customer';
 
 // Declaramos las variables para jQuery
 declare var jQuery:any;
@@ -19,7 +20,9 @@ declare var $:any;
 export class PostProductComponent implements OnInit ,AfterViewInit{
   public listarAllCategory:any[]=[];
   public productLang = ProductLang;
+  public customer : Customer=new Customer();
   public addProduct : AddProduct = new AddProduct();
+
 
   ngAfterViewInit(): void{
     $(window).load(function(){
@@ -96,10 +99,16 @@ export class PostProductComponent implements OnInit ,AfterViewInit{
              });
 
   }
-  
-  constructor(private AppService:ServicioService) { }
+  private urlPost: string;
+  constructor(private AppService:ServicioService,private router: Router) { }
 
   ngOnInit() {
+    this.customer = JSON.parse(localStorage.getItem('user')) as Customer;
+    if(this.customer == undefined || this.customer == null){
+      return ;
+    }
+    this.urlPost = "/postproduct/"+this.customer.id_customer;
+    this.router.navigateByUrl(this.urlPost);
     this.AppService.getAllCategory().subscribe(rest=>{
       //console.log('ejecutando');
       this.listarAllCategory = rest.json();
@@ -113,6 +122,7 @@ export class PostProductComponent implements OnInit ,AfterViewInit{
     imagenesBase46.push((document.getElementById('img-secundaria1') as HTMLImageElement).src);
     imagenesBase46.push((document.getElementById('img-secundaria2') as HTMLImageElement).src);
     this.addProduct.imgData = imagenesBase46;
+    this.addProduct.customerProduct.id_customer=this.customer.id_customer;
     this.AppService.postProduct(this.addProduct).subscribe(rest=>{
       console.log(rest);
 

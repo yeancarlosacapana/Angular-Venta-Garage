@@ -12,8 +12,9 @@
 <app-search></app-search>
 </div>             
 <div class="registro-login col-lg-2">
-  <a href="" class="registrate" data-toggle="modal" data-target="#registrar">Registrate</a>/
-  <a class="ingresa" data-toggle="modal" data-target="#login">Ingresa</a>
+  <a href="" *ngIf="!customer.is_logged" class="registrate" data-toggle="modal" data-target="#registrar">Registrate</a>/
+  <a class="ingresa" *ngIf="!customer.is_logged" data-toggle="modal" data-target="#login">Ingresa</a>
+  <a *ngIf="customer.is_logged" (click)="logout()">logout</a>
   <a [routerLink]="['/postproduct/:id_customer']" class="display:none;"></a> 
   <div class="icon-user"></div>
 </div>
@@ -31,13 +32,13 @@
                 <form action="">
                     <div class="form-group">
                         <label for="direccion">Correo Electronico</label>
-                        <input type="email" class="form-control" id="direccion">
+                        <input type="email" class="form-control" id="direccion" name="email" [(ngModel)]="email">
                     </div>
                     <div class="form-group">
                         <label for="password">Contraseña</label>
-                        <input type="password" class="form-control" id="password">
+                        <input type="password" class="form-control" id="password" name="passwd" [(ngModel)]="passwd">
                     </div>
-                    <div class="form-group"><button type="submit" class="btn  btn-block btn-primary">Iniciar Sesión</button></div>
+                    <div class="form-group"><button type="button" class="btn  btn-block btn-primary" [disabled]='email.length == 0 && passwd.length == 0' (click)="signCustomer(email,passwd)">Iniciar Sesión</button></div>
                     <div class="form-group">
                       <button class="btn btn-info facebook" (click)="signInWithFB()">Facebook</button>
                       <button class="btn btn-warning google" (click)="sigInWithGoogle()">Google</button>

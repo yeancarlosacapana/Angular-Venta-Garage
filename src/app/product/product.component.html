@@ -74,33 +74,27 @@
                         </select>  
                       </div>
                   </div>
-                  <div class="col-lg-12 contenedor-lista-producto">
+                  <div class="col-lg-12 contenedor-lista-producto" >
                     
-                      <div class="content-product col-lg-4" *ngFor="let productos of listarProduct | productFilter:eProduct">
-                            <a [routerLink]="['/detail-product','id',productos.id_product]" class="enlace-product">
-                              <div class="contenedor-product">
-                                      <div class="contenedor-img-product">
-                                          <img src="{{productos.url}}" alt="" class="img-responsive img-productos">
-                                      </div>
-                                          
-                                      <div class="contenedor-texto">
-                                          <p class="text-left">{{(productos.producto.length>6)? (productos.producto|slice:0:30)+'..':(productos.producto)}}</p>
-                                      </div>
-                                      <div class="contenedor-price-condicion">
-                                          <span class="price">{{productos.price}}</span>
-                                          <span class="condicion">{{productos.condition|uppercase}} </span>
-                                      </div>
-                              </div>
-                            </a>  
+                      <div class="content-product col-lg-4" *ngFor="let productos of listarProduct | productFilter:eProduct | paginate: { itemsPerPage: 10, currentPage: p }">
+                        <a [routerLink]="['/detail-product','id',productos.id_product]" class="enlace-product">
+                            <div class="contenedor-product">
+                                    <div class="contenedor-img-product">
+                                        <img src="{{productos.url}}" alt="" class="img-responsive img-productos">
+                                    </div>
+                                        
+                                    <div class="contenedor-texto">
+                                        <p class="text-left">{{(productos.producto.length>6)? (productos.producto|slice:0:30)+'..':(productos.producto)}}</p>
+                                    </div>
+                                    <div class="contenedor-price-condicion">
+                                        <span class="price">{{productos.price}}</span>
+                                        <span class="condicion">{{productos.condition|uppercase}} </span>
+                                    </div>
+                            </div>
+                        </a>
                       </div>
+                      <pagination-controls (pageChange)="p = $event" class="col-lg-12"></pagination-controls>
                   </div>
-                  <div class="col-lg-12 pagination">
-                        <a *ngIf="listarProduct.prev_page_url != null" href="{{listarProduct.prev_page_url}}" class="btn">
-                            <span class="glyphicon glyphicon-menu-left"></span>
-                        </a>
-                        <a *ngIf="nextPageUrl" href="{{listarProduct.next_page_url}}" class="btn">
-                            <span class="glyphicon glyphicon-menu-right"></span>
-                        </a>
-                  </div> 
+                 
           </div>          
         </div>
