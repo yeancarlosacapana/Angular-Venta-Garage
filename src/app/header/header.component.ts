@@ -41,10 +41,11 @@ export class HeaderComponent implements OnInit {
       this.customer.address = this.address;
       this.customer.id_customer = this.customer.id_customer;
     }
+    console.log(this.customer.id_customer);
   
   }
   grabar(){
-    console.log(this.customer);
+    console.log(this.customer.id_customer);
     this.customer.address.lastname=this.customer.lastname;
     this.customer.address.firstname=this.customer.firstname;
     this.customer.address.company=this.customer.company;
