@@ -1,3 +1,4 @@
+<script src="https://checkout.culqi.com/v2"></script>
 <form enctype="multipart/form-data" class="form-post">
   <div class="col-lg-4">
           <div class="form-group contenedor-carga-categoria ">
@@ -48,32 +49,53 @@
           <label for="precio">Precio</label>
           <input type="number" name="price" id="precio" class="form-control frm-precio" [(ngModel)]='addProduct.price'>
       </div>
-      <div class="form-group ">
-          <label for="">Condición de producto</label>
-          <div class="radio">
-              <label><input type="radio" name="condition" value="used" [(ngModel)]='addProduct.condition'>USADO</label>
-          </div>
-          <div class="radio">
-              <label><input type="radio" name="condition" value="refurbished" [(ngModel)]='addProduct.condition'>REACONDICIONADO</label>
-          </div>    
-      </div>
   </div>
   <div class="col-lg-4">
       <p>Metodo de Publicación</p>
-      <div class="form-group ">
-              <div class="radio">
-                  <label><input type="radio" name="pago" value="free" [(ngModel)]='addProduct.pago'>GRATIS</label>
+            <div class="form-group">
+                <div class="radio">
+                  <label><input type="radio" name="pago" value="free" id="free" [(ngModel)]='addProduct.pago' (change)="showCulqi(1)">GRATIS</label>
                   <p><a href="#">mas información</a></p>
-              </div>
-              <div class="radio">
-                  <label><input type="radio" id="costo" name="pago" value="cost" [(ngModel)]='addProduct.pago'>COSTO</label>
-                  <p><a href="#">mas información</a></p>
-              </div> 
-              <div class="checkbox">
-                  <label><input type="checkbox">Acepta nuestros <span class="terminos">términos y condiciones</span></label>
-              </div>
-              <button type="button" class="form-control btn-block btn-publicar" (click)='grabar()'>PUBLICAR PRODUCTO</button>   
-      </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="radio">
+                    <label><input type="radio" id="costo" name="pago"  value="cost" [(ngModel)]='addProduct.pago' (change)="showCulqi(2)">COSTO</label>
+                    <p><a href="#">mas información</a></p>
+                </div>
+            </div> 
+            <div class="col-lg-10 targe-credit" *ngIf="isFree">
+                <div class="form-group">
+                    <label>Correo Electronico</label>
+                    <input type="text" class="form-control" name="email" id="email" size="50" placeholder="correo@gmail.com">
+                </div>
+                <div class="for-group">
+                    <label>Número de tarjeta</label>
+                    <input type="text"  size="20" class="form-control" data-culqi="card[number]" id="card[number]" placeholder="4111111111111111">
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <label>Mes</label>
+                            <input type="text" class="form-control" size="2" data-culqi="card[exp_month]" id="card[exp_month]" placeholder="02">
+                        </div>
+                        <div class="col-lg-4">
+                            <label>Año</label>
+                            <input type="text" class="form-control" size="4" data-culqi="card[exp_year]" id="card[exp_year]" placeholder="2018">
+                        </div>
+                        <div class="col-lg-4">
+                                <label>CVC</label>
+                                <input type="text" class="form-control" size="4" data-culqi="card[cvc]" id="card[cvc]" placeholder="123">
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox col-lg-12">
+                        <label><input type="checkbox" name="terminos" #elemTerminos (change)="accepted(elemTerminos.checked)">Acepta nuestros <span class="terminos"> términos y condiciones</span></label>
+                </div>
+            </div>
+        <button type="button" class="form-control btn-block btn-publicar" [disabled]='!elemTerminos.checked' (click)='grabar()'>PUBLICAR PRODUCTO</button>   
   </div>
 </form>
 

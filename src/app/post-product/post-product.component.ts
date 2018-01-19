@@ -22,7 +22,7 @@ export class PostProductComponent implements OnInit ,AfterViewInit{
   public productLang = ProductLang;
   public customer : Customer=new Customer();
   public addProduct : AddProduct = new AddProduct();
-
+  public isFree : boolean = false;
 
   ngAfterViewInit(): void{
     $(window).load(function(){
@@ -127,5 +127,15 @@ export class PostProductComponent implements OnInit ,AfterViewInit{
       console.log(rest);
 
     });
+  }
+
+  showCulqi(valuepago){
+    if(valuepago === 1 )
+      this.isFree = false;
+    else
+      this.isFree= true;
+  }
+  accepted(ischecked){
+    return ischecked;
   }
 } 
