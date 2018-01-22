@@ -1,6 +1,8 @@
 export class Address {
     public id_country:number;
-    public id_zone :number;
+    public id_state:number;
+    public id_provincia:number;
+    public id_distrito:number;
     public id_customer:number;
     public alias:string;
     public company:string;

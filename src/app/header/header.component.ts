@@ -22,6 +22,9 @@ export class HeaderComponent implements OnInit {
   private user : SocialUser = new SocialUser();
   private loggedIn : boolean;
   public responseCustomer:any[] = [];
+  public state:any[]=[];
+  public provincia:any[]=[];
+  public distrito:any[]=[];
 
   email:string= '';
   passwd:string= '';
@@ -40,7 +43,9 @@ export class HeaderComponent implements OnInit {
       this.customer = <Customer>JSON.parse(localStorage.getItem('user'));
       this.customer.address = this.address;
       this.customer.id_customer = this.customer.id_customer;
+
     }
+    this.getAllState();
     console.log(this.customer.id_customer);
   
   }
@@ -83,6 +88,24 @@ export class HeaderComponent implements OnInit {
   logout(){
     localStorage.removeItem('user');
     this.customer = new Customer();
+  }
+  getAllState(){
+    this.appService.getState().subscribe(rest=>{
+      this.state= rest.json();
+      console.log(rest);
+    });
+  }
+  getAllProvincia(id_state){
+    this.appService.getProvincia(id_state).subscribe(rest=>{
+      this.provincia = rest.json();
+      console.log(rest);
+    });
+  }
+  getAllDistrito(id_provincia){
+    this.appService.getDistrito(id_provincia).subscribe(rest=>{
+      this.distrito = rest.json();
+      console.log(rest);
+    });
   }
 
 

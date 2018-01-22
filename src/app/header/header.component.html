@@ -75,8 +75,22 @@
                         <input type="text" class="form-control" name="lastname" [(ngModel)]='customer.lastname'>
                     </div>
                     <div class="form-group col-lg-6">
-                      <label>Ciudad</label>
-                      <input type="text" class="form-control" name="city" [(ngModel)]='customer.address.city'>
+                      <label>Departamento</label>
+                      <select class="form-control" name="state" [(ngModel)]='customer.address.state' (change)="getAllProvincia(customer.address.state)">
+                        <option *ngFor="let getstate of state" [value]="getstate.id_state">{{getstate.name}}</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-lg-6">
+                      <label>Provincia</label>
+                      <select class="form-control" name="provincia" [(ngModel)]='customer.address.provincia' (change)="getAllDistrito(customer.address.provincia)">
+                        <option *ngFor="let getprovincia of provincia" [value]="getprovincia.id_provincia">{{getprovincia.nombre}}</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-lg-6">
+                      <label>distrito</label>
+                      <select class="form-control" name="distrito" [(ngModel)]='customer.address.distrito'>
+                        <option *ngFor="let getdistrito of distrito" [value]="getdistrito.id_distrito">{{getdistrito.nombre}}</option>
+                      </select>
                     </div>
                     <div class="form-group col-lg-6">
                         <label>DNI</label>
