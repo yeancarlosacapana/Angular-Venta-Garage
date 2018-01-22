@@ -13,6 +13,7 @@
 </div>             
 <div class="registro-login col-lg-2">
   <a href="" *ngIf="!customer.is_logged" class="registrate" data-toggle="modal" data-target="#registrar">Registrate</a>
+  <a href=""  *ngIf="customer.is_logged"> {{user.name}}</a> 
   <button type="button" class="btn btn-default ingresa btn-sm" *ngIf="!customer.is_logged" data-toggle="modal" data-target="#login">
     <span class="glyphicon glyphicon-log-in"></span> Log in
   </button>

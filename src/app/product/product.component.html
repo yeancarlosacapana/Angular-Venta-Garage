@@ -10,7 +10,11 @@
           <div class="col-lg-3">
               <div class="filtro-salas">
                   <h4 class="font-weight-bold">{{categoryName | uppercase}}</h4>
-                  <a href="">Seccionales</a>
+                  <ul>
+                    <li *ngFor="let subcategory of getSubCategory">
+                        <a [routerLink]="['/category-product','cat',subcategory.id_category]">{{subcategory.name}}</a>
+                    </li>
+                  </ul> 
               </div>
               <div class="filtros">
                   <h5>

@@ -41,6 +41,7 @@ export class ProductComponent implements OnInit, AfterViewInit {
   private sortBy : string;
   public listarProduct:Product[]=[];
   public eProduct:Product = new Product();
+  public getSubCategory:any[]=[];
 
   constructor(private route:ActivatedRoute , private AppService:ServicioService) { 
   }
@@ -51,10 +52,12 @@ export class ProductComponent implements OnInit, AfterViewInit {
       if(this.filtertype == 'cat'){
         this.id_category = +params['value'];
         this.get(this.id_category);
+        this.filterSubCategory(this.id_category);
       }else{
         this.name = (params['value']);
         this.getByName(this.name);
       }
+
         
     })
     
@@ -111,6 +114,12 @@ export class ProductComponent implements OnInit, AfterViewInit {
     oFilterProduct.typeFilter = this.filtertype;
     this.AppService.getDateByProduct(oFilterProduct).subscribe(rest=>{
       this.setProduct(rest.json());
+    });
+  }
+  filterSubCategory(id_category){
+    this.AppService.getSubCategory(id_category).subscribe(rest=>{
+      this.getSubCategory= rest.json();
+      console.log(rest);
     });
   }
 

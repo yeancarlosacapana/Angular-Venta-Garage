@@ -54,4 +54,7 @@ export class ServicioService {
   public getDistrito(id_provincia){
     return this.http.get(this.Url+'distrito/'+id_provincia);
   }
+  public getSubCategory(id_category){
+    return this.http.get(this.Url+'subcategoria/'+id_category);
+  }
 }
