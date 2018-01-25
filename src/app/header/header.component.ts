@@ -62,17 +62,17 @@ export class HeaderComponent implements OnInit {
 
     }
     this.getAllState();
-    console.log(this.customer.id_customer);
+    //console.log(this.customer.id_customer);
   
   }
   grabar(){
-    console.log(this.customer.id_customer);
+    //console.log(this.customer.id_customer);
     this.customer.address.lastname=this.customer.lastname;
     this.customer.address.firstname=this.customer.firstname;
     this.customer.address.company=this.customer.company;
     this.customer.id_customer=this.customer.id_customer
     this.appService.registerCustomer(this.customer).subscribe(rest=>{
-      console.log(rest);
+      //console.log(rest);
     });
   }
   sigInWithGoogle():void{
@@ -86,7 +86,6 @@ export class HeaderComponent implements OnInit {
   }
 
   signCustomer(email,passwd,login_media):void{
-    //console.log(this.customer);
     this.customer.email = email;
     this.customer.passwd = passwd;
     this.customer.login_media = login_media;
