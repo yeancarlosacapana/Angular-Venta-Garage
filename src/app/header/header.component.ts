@@ -38,8 +38,8 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.authService.authState.subscribe((user)=>{
       this.user = <SocialUser>user;
-      this.customer.email = this.user.email;
       if(this.user != null){
+        this.customer.email = this.user.email;
         this.appService.loginSocial(this.customer).subscribe(response => {
           this.customer.firstname = this.user.firstName;
           this.customer.lastname = this.user.lastName;
