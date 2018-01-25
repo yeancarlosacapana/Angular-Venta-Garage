@@ -60,6 +60,6 @@ export class ServicioService {
     return this.http.get(this.Url+'subcategoria/'+id_category);
   }
   public loginSocial(customer: Customer): any {
-    return this.http.post(this.Url +"/loginSocial",customer);
+    return this.http.post(this.Url +"loginSocial",customer);
   }
 }
