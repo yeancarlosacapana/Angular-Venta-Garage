@@ -94,6 +94,7 @@ export class HeaderComponent implements OnInit {
       if(Object.keys(rest.json()).length ===0){
         console.log('user not found')
       }else{
+        console.log(this.customer);
         this.customer=rest.json();
         this.customer.address = this.address;
         localStorage.setItem('user',JSON.stringify(rest.json()));
