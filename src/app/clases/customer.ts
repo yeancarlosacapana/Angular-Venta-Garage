@@ -11,9 +11,11 @@ export class Customer {
     public passwd:string;
     public address : Address;
     public is_logged : boolean;
+    public login_media: string;
 
     constructor(){
         this.address = new Address();
         this.is_logged = false;
+        this.login_media = 'form';
     }
 }

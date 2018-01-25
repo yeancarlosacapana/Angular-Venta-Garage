@@ -28,18 +28,34 @@ export class HeaderComponent implements OnInit {
 
   email:string= '';
   passwd:string= '';
+  
+  public sMessageSocial = "";
+  public registerFarom = "form";
 
 
   constructor(private appService:ServicioService,private authService:AuthService) { }
 
   ngOnInit() {
     this.authService.authState.subscribe((user)=>{
-      this.user = user;
-      this.loggedIn = (user != null);
-      console.log(this.user);
+      this.user = <SocialUser>user;
+      this.customer.email = this.user.email;
+      if(this.user != null){
+        this.appService.(this.customer).subscribe(response => {
+          this.customer.firstname = this.user.firstName;
+          this.customer.lastname = this.user.lastName;
+          this.customer.email = this.user.email;
+          if (response.json().resp === true){
+            this.signCustomer(this.customer.email,'','social');
+          }else{
+            this.sMessageSocial = "Complete su registro ..";
+            this.customer.login_media = "social";
+            $("#registrar").modal("show");
+          }
+        });
+      }
     });
-    let storage =localStorage.getItem('user');
-    if(storage!=null && storage.length > 0){
+    const storage = localStorage.getItem('user');
+    if(storage !=null && storage.length > 0){
       this.customer = <Customer>JSON.parse(localStorage.getItem('user'));
       this.customer.address = this.address;
       this.customer.id_customer = this.customer.id_customer;
@@ -69,10 +85,11 @@ export class HeaderComponent implements OnInit {
     this.authService.signOut();
   }
 
-  signCustomer(email,passwd):void{
+  signCustomer(email,passwd,login_media):void{
     console.log(this.customer);
     this.customer.email = email;
     this.customer.passwd = passwd;
+    this.customer.login_media = login_media;
     this.appService.loginCustomer(this.customer).subscribe(rest=>{
       if(Object.keys(rest.json()).length ===0){
         console.log('user not found')
@@ -107,6 +124,4 @@ export class HeaderComponent implements OnInit {
       console.log(rest);
     });
   }
-
-
 }

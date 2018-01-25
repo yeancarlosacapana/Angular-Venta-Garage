@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import {Http} from '@angular/http';
 import {Observable} from 'rxjs/Rx';
-import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/map';  
+import { Customer } from './clases/customer';
+
 @Injectable()
 export class ServicioService {
   //creandp variable
@@ -56,5 +58,8 @@ export class ServicioService {
   }
   public getSubCategory(id_category){
     return this.http.get(this.Url+'subcategoria/'+id_category);
+  }
+  public loginSocial(customer: Customer): any {
+    return this.http.post(this.Url +"/loginSocial",customer);
   }
 }

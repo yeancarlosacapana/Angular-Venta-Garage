@@ -43,7 +43,7 @@
                         <label for="password">Contraseña</label>
                         <input type="password" class="form-control" id="password" name="passwd" [(ngModel)]="passwd">
                     </div>
-                    <div class="form-group"><button type="button" class="btn  btn-block btn-primary" [disabled]='email.length == 0 && passwd.length == 0' (click)="signCustomer(email,passwd)">Iniciar Sesión</button></div>
+                    <div class="form-group"><button type="button" class="btn  btn-block btn-primary" [disabled]='email.length == 0 && passwd.length == 0' (click)="signCustomer(email,passwd,'form')">Iniciar Sesión</button></div>
                     <div class="form-group">
                       <button class="btn btn-info facebook" (click)="signInWithFB()">Facebook</button>
                       <button class="btn btn-warning google" (click)="sigInWithGoogle()">Google</button>
@@ -121,7 +121,7 @@
                         <label>Contraseña</label>
                         <input type="password" class="form-control" name="passwd" [(ngModel)]='customer.passwd'>
                     </div>
-                    
+                    <label class="label label-info">{{sMessageSocial}}</label>
                     <button type="button" class="btn  btn-block" (click)='grabar()' >Register</button>                                
                 </form>
         </div>
