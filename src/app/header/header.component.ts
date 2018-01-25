@@ -75,6 +75,7 @@ export class HeaderComponent implements OnInit {
     this.appService.registerCustomer(this.customer).subscribe(rest=>{
       if(Object.keys(rest.json()).length >0){
         this.signCustomer(this.customer.email,this.customer.passwd,this.customer.login_media);
+        jQuery('#registrar').modal('hide');
       }else{
         console.log('.l.')
       }
