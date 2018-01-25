@@ -40,7 +40,7 @@ export class HeaderComponent implements OnInit {
       this.user = <SocialUser>user;
       this.customer.email = this.user.email;
       if(this.user != null){
-        this.appService.(this.customer).subscribe(response => {
+        this.appService.loginSocial(this.customer).subscribe(response => {
           this.customer.firstname = this.user.firstName;
           this.customer.lastname = this.user.lastName;
           this.customer.email = this.user.email;
