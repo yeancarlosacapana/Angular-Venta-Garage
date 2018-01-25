@@ -49,6 +49,7 @@ export class HeaderComponent implements OnInit {
           }else{
             this.sMessageSocial = "Complete su registro ..";
             this.customer.login_media = "social";
+            this.customer.passwd = '*******';
             $("#registrar").modal("show");
           }
         });

@@ -119,9 +119,8 @@
                     </div>
                     <div class="form-group col-lg-6">
                         <label>Contraseña</label>
-                        <input type="password" class="form-control" name="passwd" [(ngModel)]='customer.passwd'>
-                    </div>
-                    <label class="label label-info">{{sMessageSocial}}</label>
+                        <input type="password" class="form-control" name="passwd" [(ngModel)]='customer.passwd' [disabled]="customer.login_media != 'form'">
+                    </div>                    <label class="label label-info">{{sMessageSocial}}</label>
                     <button type="button" class="btn  btn-block" (click)='grabar()' >Register</button>                                
                 </form>
         </div>
