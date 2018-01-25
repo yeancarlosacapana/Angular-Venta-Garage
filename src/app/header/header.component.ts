@@ -73,6 +73,11 @@ export class HeaderComponent implements OnInit {
     this.customer.address.company=this.customer.company;
     this.customer.id_customer=this.customer.id_customer
     this.appService.registerCustomer(this.customer).subscribe(rest=>{
+      if(Object.keys(rest.json()).length >0){
+        this.signCustomer(this.customer.email,this.customer.passwd,this.customer.login_media);
+      }else{
+        console.log('.l.')
+      }
       //console.log(rest);
     });
   }
