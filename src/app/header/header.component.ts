@@ -86,7 +86,7 @@ export class HeaderComponent implements OnInit {
   }
 
   signCustomer(email,passwd,login_media):void{
-    console.log(this.customer);
+    //console.log(this.customer);
     this.customer.email = email;
     this.customer.passwd = passwd;
     this.customer.login_media = login_media;
@@ -94,7 +94,7 @@ export class HeaderComponent implements OnInit {
       if(Object.keys(rest.json()).length ===0){
         console.log('user not found')
       }else{
-        console.log(this.customer);
+        console.log(this.customer); 
         this.customer=rest.json();
         this.customer.address = this.address;
         localStorage.setItem('user',JSON.stringify(rest.json()));
