@@ -20,20 +20,9 @@
               <p>Ingrese fotos del inmueble</p>
               <span>No incluyas logos,banners,textos promocionales,bordes ni marca de agua</span>
               <div class="col-lg-12 contenedor-cargado-img">
-                  
-                  <div class="col-lg-8 contenedor-img-principal">
-                      <input name="image" id="file-input" type="file" class="file" [(ngModel)]='addProduct.image.image' />
-                      <img src="http://placehold.it/150x150&text=zero" class="img-responsive img-principal" id="img-principal" >
-                  </div>
-                  <div class="col-lg-4 contenedor-img-segundarias">
-                      <div class="contenedor-img-segundaria">
-                          <input type="file" name="image1" id="file-input1" class="file" [(ngModel)]='addProduct.image.image'/>    
-                          <img src="http://placehold.it/150x150&text=1" class="img-responsive img-segundaria" id="img-secundaria1">
-                      </div>
-                      <div class="contenedor-img-segundaria">
-                          <input type="file" name="image2" id="file-input2" class="file" [(ngModel)]='addProduct.image.image'/>
-                          <img src="http://placehold.it/150x150&text=2" class="img-responsive img-segundaria" id="img-secundaria2">
-                      </div> 
+                  <div class=" contenedor-img-principal " *ngFor="let img of image" [ngClass]="{'col-lg-2':img.class === true , 'col-lg-10':img.class === false}">
+                      <input name="image-{{img.index}}" id="file-input-{{img.index}}" type="file" class="file"  (change)='uploadImage($event,img.index)' />
+                      <img src="http://placehold.it/150x150&text=zero" [ngClass]="{'small':img.class === true}" class="img-responsive img-principal" id="img-principal-{{img.index}}" >
                   </div>
               </div>   
           </div>
@@ -65,6 +54,13 @@
                 </div>
             </div> 
             <div class="col-lg-10 targe-credit" *ngIf="isFree">
+                <div class="form-group form-inline">
+                    <div class="radio">
+                        <label class="text-costo"><input type="radio" name="costo" id="15" class="costo" (click)="addImages(3)">15</label>
+                        <label class="text-costo"><input type="radio" name="costo" id="40" class="costo" (click)="addImages(6)">40</label>
+                        <label class="text-costo"><input type="radio" name="costo" id="70" class="costo" (click)="addImages(6)">70</label>
+                    </div>
+                </div>
                 <div class="form-group">
                     <label>Correo Electronico</label>
                     <input type="text" class="form-control" name="email" id="email" size="50" placeholder="correo@gmail.com">

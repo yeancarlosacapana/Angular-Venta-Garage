@@ -23,82 +23,9 @@ export class PostProductComponent implements OnInit ,AfterViewInit{
   public customer : Customer=new Customer();
   public addProduct : AddProduct = new AddProduct();
   public isFree : boolean = false;
+  public image : any[] = [];
 
-  ngAfterViewInit(): void{
-    $(window).load(function(){
-    
-      $(function() {
-       $('#file-input').change(function(e) {
-           addImage(e); 
-          });
-     
-          function addImage(e){
-           var file = e.target.files[0],
-           imageType = /image.*/;
-         
-           if (!file.type.match(imageType))
-            return;
-           var reader = new FileReader();
-           reader.onload = fileOnload;
-           reader.readAsDataURL(file);
-          }
-       
-          function fileOnload(e) {
-           var result=e.target.result;
-           $('#img-principal').attr("src",result);
-          }
-         });
-       });
-       $(window).load(function(){
-        
-        $(function() {
-         $('#file-input1').change(function(e) {
-             addImage(e); 
-            });
-       
-            function addImage(e){
-             var file = e.target.files[0],
-             imageType = /image.*/;
-           
-             if (!file.type.match(imageType))
-              return;
-             var reader = new FileReader();
-             reader.onload = fileOnload;
-             reader.readAsDataURL(file);
-            }
-         
-            function fileOnload(e) {
-             var result=e.target.result;
-             $('#img-secundaria1').attr("src",result);
-            }
-           });
-         });
-         $(window).load(function(){
-           
-            $(function() {
-             $('#file-input2').change(function(e) {
-                 addImage(e); 
-                });
-           
-                function addImage(e){
-                 var file = e.target.files[0],
-                 imageType = /image.*/;
-               
-                 if (!file.type.match(imageType))
-                  return;
-                 var reader = new FileReader();
-                 reader.onload = fileOnload;
-                 reader.readAsDataURL(file);
-                }
-             
-                function fileOnload(e) {
-                 var result=e.target.result;
-                 $('#img-secundaria2').attr("src",result);
-                }
-               });
-             });
-
-  }
+  ngAfterViewInit(): void{}
   private urlPost: string;
   constructor(private AppService:ServicioService,private router: Router) { }
 
@@ -112,15 +39,16 @@ export class PostProductComponent implements OnInit ,AfterViewInit{
     this.AppService.getAllCategory().subscribe(rest=>{
       //console.log('ejecutando');
       this.listarAllCategory = rest.json();
-      console.log(this.listarAllCategory);
+      //console.log(this.listarAllCategory);
     });
+    this.image.push({index:0,class:false});
   }
   grabar(){
     console.log(this.addProduct);
     let imagenesBase46 = [];
     imagenesBase46.push((document.getElementById('img-principal') as HTMLImageElement).src);
-    imagenesBase46.push((document.getElementById('img-secundaria1') as HTMLImageElement).src);
-    imagenesBase46.push((document.getElementById('img-secundaria2') as HTMLImageElement).src);
+    // imagenesBase46.push((document.getElementById('img-secundaria1') as HTMLImageElement).src);
+    // imagenesBase46.push((document.getElementById('img-secundaria2') as HTMLImageElement).src);
     this.addProduct.imgData = imagenesBase46;
     this.addProduct.customerProduct.id_customer=this.customer.id_customer;
     this.AppService.postProduct(this.addProduct).subscribe(rest=>{
@@ -130,12 +58,38 @@ export class PostProductComponent implements OnInit ,AfterViewInit{
   }
 
   showCulqi(valuepago){
-    if(valuepago === 1 )
+    if(valuepago === 1 ){
       this.isFree = false;
+      this.image = [];
+      this.image.push({index:0,class:false});
+    }
     else
       this.isFree= true;
+      
   }
   accepted(ischecked){
     return ischecked;
+  }
+  uploadImage(images,index){
+    const ofile = images.target.files[0];
+    var reader = new FileReader();
+    reader.onload = function(e){
+      var result = reader.result;
+      $('#img-principal-'+index).attr("src",result);
+    };
+    if(ofile){
+      reader.readAsDataURL(ofile);  
+    }
+  }
+  addImages(photoNumber:number){
+    this.image = [];
+    for(let i=0 ;i<=photoNumber-1 ;i++){
+      if(i===0){
+        this.image.push({index:i,class:false});
+      }else{
+        this.image.push({index:i,class:true});
+      }
+        
+    }
   }
 } 
