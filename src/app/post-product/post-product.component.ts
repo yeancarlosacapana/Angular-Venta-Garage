@@ -5,7 +5,6 @@ import {AddProduct} from '../clases/add-product';
 import {ProductLang} from '../clases/product-lang';
 import {Image} from '../clases/image';
 import { Customer } from '../clases/customer';
-import { setInterval } from 'timers';
 
 // Declaramos las variables para jQuery
 declare var jQuery:any;
@@ -27,6 +26,7 @@ export class PostProductComponent implements OnInit ,AfterViewInit{
   public isFree = false;
   public image: any[] = [];
   private urlPost: string;
+  private errorCulqiMessage:string;
 
   constructor(private AppService:ServicioService,private router: Router) { }
 
@@ -47,25 +47,41 @@ export class PostProductComponent implements OnInit ,AfterViewInit{
   ngAfterViewInit(): void {
     Culqi.init();
   }
-  grabar(){
+  realizarPago(): void {
     let data_culqi = null;
+    this.errorCulqiMessage = undefined;
     Culqi.createToken();
-    const interval = setInterval(() =>{
+    const interval = setInterval(() => {
       data_culqi = window['data_culqi']; //Referencia de metodo culqi en index.html
       if (data_culqi !== undefined && data_culqi !== '' && data_culqi !== null) {
         clearInterval(interval);
         window['data_culqi'] = undefined;
-        //console.log(this.addProduct);
-        let imagenesBase46 = [];
-        imagenesBase46.push((document.getElementById('img-principal-0') as HTMLImageElement).src);
-        // imagenesBase46.push((document.getElementById('img-secundaria1') as HTMLImageElement).src);
-        // imagenesBase46.push((document.getElementById('img-secundaria2') as HTMLImageElement).src);
-        this.addProduct.imgData = imagenesBase46;
-        this.addProduct.customerProduct.id_customer = this.customer.id_customer;
-        this.AppService.postProduct({ product: this.addProduct, culqi: data_culqi }).subscribe(rest => {
-          console.log(rest);
-        });
-    },1000);
+        console.log(data_culqi);
+        if (data_culqi.error !== null && data_culqi.error !== undefined){
+          this.errorCulqiMessage = data_culqi.error.user_message;
+        }else{
+          const culquiInfo = { id: data_culqi.token.id, email: data_culqi.token.email };
+          this.AppService.culqiPago({ product: this.addProduct, culqi: culquiInfo }).subscribe(response => {
+            console.log(response.json());
+          }, error => {
+            console.log(error.json());
+          });
+        }
+      }
+    }, 1000);
+  }
+  grabar() {
+
+    const  imagenesBase46 = [];
+    imagenesBase46.push((document.getElementById('img-principal-0') as HTMLImageElement).src);
+    // imagenesBase46.push((document.getElementById('img-secundaria1') as HTMLImageElement).src);
+    // imagenesBase46.push((document.getElementById('img-secundaria2') as HTMLImageElement).src);
+    this.addProduct.imgData = imagenesBase46;
+    this.addProduct.customerProduct.id_customer = this.customer.id_customer;
+    //
+    /*this.AppService.postProduct({ product: this.addProduct, culqi: culquiInfo }).subscribe(rest => {
+      console.log(rest);
+    });*/
   }
 
   showCulqi(valuepago){

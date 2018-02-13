@@ -56,9 +56,9 @@
             <div class="col-lg-10 targe-credit" *ngIf="isFree">
                 <div class="form-group form-inline">
                     <div class="radio">
-                        <label class="text-costo"><input type="radio" name="costo" id="15" class="costo" (click)="addImages(3)">15</label>
-                        <label class="text-costo"><input type="radio" name="costo" id="40" class="costo" (click)="addImages(6)">40</label>
-                        <label class="text-costo"><input type="radio" name="costo" id="70" class="costo" (click)="addImages(6)">70</label>
+                        <label class="text-costo"><input type="radio" name="costo" id="15" class="costo" (click)="addImages(3)"> S/.15</label>
+                        <label class="text-costo"><input type="radio" name="costo" id="40" class="costo" (click)="addImages(6)"> S/.40</label>
+                        <label class="text-costo"><input type="radio" name="costo" id="70" class="costo" (click)="addImages(6)"> S/.70</label>
                     </div>
                 </div>
                 <div class="form-group">
@@ -85,11 +85,20 @@
                             </div>
                     </div>
                 </div>
+                <div *ngIf="errorCulqiMessage !== undefined"  class="alert alert-danger">
+                    <p>{{errorCulqiMessage}}</p>
+                </div>
+                <div *ngIf="successCulqiMessage !== undefined" class="alert alert-danger">
+                    <p>{{successCulqiMessage}}</p>
+                </div>
             </div>
             <div class="form-group">
                 <div class="checkbox col-lg-12">
                         <label><input type="checkbox" name="terminos" #elemTerminos (change)="accepted(elemTerminos.checked)">Acepta nuestros <span class="terminos"> términos y condiciones</span></label>
                 </div>
+            </div>
+            <div class="form-group">
+                <bUtton class="btn btn-default" (click)="realizarPago()">Realizar Pago</bUtton>
             </div>
         <button type="button" class="form-control btn-block btn-publicar" [disabled]='!elemTerminos.checked' (click)='grabar()'>PUBLICAR PRODUCTO</button>   
   </div>

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import {Http} from '@angular/http';
+import {Response, Http} from '@angular/http';
 import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/map';  
+
 import { Customer } from './clases/customer';
 
 @Injectable()
@@ -61,5 +62,11 @@ export class ServicioService {
   }
   public loginSocial(customer: Customer): any {
     return this.http.post(this.Url +"loginSocial",customer);
+  }
+
+  public culqiPago(data: any): any{
+    return this.http.post(this.Url+"culqi/payout",data).map((res: Response) => res.json()).catch((error) =>{
+      return Observable.throw(error);
+    });
   }
 }
