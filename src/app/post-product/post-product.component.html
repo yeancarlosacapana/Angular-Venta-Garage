@@ -43,7 +43,7 @@
       <p>Metodo de Publicación</p>
             <div class="form-group">
                 <div class="radio">
-                  <label><input type="radio" name="pago" value="free" id="free" [(ngModel)]='addProduct.pago' (change)="showCulqi(1)">GRATIS</label>
+                  <label><input type="radio" id="free" name="pago" value="free" [(ngModel)]='addProduct.pago' (change)="showCulqi(1)">GRATIS</label>
                   <p><a href="#">mas información</a></p>
                 </div>
             </div>
@@ -53,12 +53,12 @@
                     <p><a href="#">mas información</a></p>
                 </div>
             </div> 
-            <div class="col-lg-10 targe-credit" *ngIf="isFree">
+            <div class="col-lg-10 targe-credit" *ngIf="!isFree">
                 <div class="form-group form-inline">
                     <div class="radio">
-                        <label class="text-costo"><input type="radio" name="costo" id="15" class="costo" (click)="addImages(3)"> S/.15</label>
-                        <label class="text-costo"><input type="radio" name="costo" id="40" class="costo" (click)="addImages(6)"> S/.40</label>
-                        <label class="text-costo"><input type="radio" name="costo" id="70" class="costo" (click)="addImages(6)"> S/.70</label>
+                        <label class="text-costo"><input type="radio" name="costo" id="15" class="costo" (click)="addImages(3,15)"> S/.15</label>
+                        <label class="text-costo"><input type="radio" name="costo" id="40" class="costo" (click)="addImages(6,40)"> S/.40</label>
+                        <label class="text-costo"><input type="radio" name="costo" id="70" class="costo" (click)="addImages(6,70)"> S/.70</label>
                     </div>
                 </div>
                 <div class="form-group">
@@ -67,28 +67,28 @@
                 </div>
                 <div class="for-group">
                     <label>Número de tarjeta</label>
-                    <input type="text"  size="20" class="form-control" data-culqi="card[number]" id="card[number]" placeholder="4111111111111111">
+                    <input type="text" maxlength="19" class="form-control" data-culqi="card[number]" id="card[number]" placeholder="4111 1111 1111 1111" appCardNumber="true">
                 </div>
                 <div class="form-group">
                     <div class="row">
                         <div class="col-lg-4">
                             <label>Mes</label>
-                            <input type="text" class="form-control" size="2" data-culqi="card[exp_month]" id="card[exp_month]" placeholder="02">
+                            <input type="text" class="form-control" maxlength="2" data-culqi="card[exp_month]" id="card[exp_month]" placeholder="02" appOnlyNumber>
                         </div>
                         <div class="col-lg-4">
                             <label>Año</label>
-                            <input type="text" class="form-control" size="4" data-culqi="card[exp_year]" id="card[exp_year]" placeholder="2018">
+                            <input type="text" class="form-control" maxlength="4" data-culqi="card[exp_year]" id="card[exp_year]" placeholder="2018" appOnlyNumber>
                         </div>
                         <div class="col-lg-4">
                                 <label>CVC</label>
-                                <input type="text" class="form-control" size="4" data-culqi="card[cvv]" id="card[cvv]" placeholder="123">
+                                <input type="text" class="form-control" maxlength="3" data-culqi="card[cvv]" id="card[cvv]" placeholder="123" appOnlyNumber>
                             </div>
                     </div>
                 </div>
                 <div *ngIf="errorCulqiMessage !== undefined"  class="alert alert-danger">
                     <p>{{errorCulqiMessage}}</p>
                 </div>
-                <div *ngIf="successCulqiMessage !== undefined" class="alert alert-danger">
+                <div *ngIf="successCulqiMessage !== undefined" class="alert alert-success">
                     <p>{{successCulqiMessage}}</p>
                 </div>
             </div>
@@ -97,10 +97,10 @@
                         <label><input type="checkbox" name="terminos" #elemTerminos (change)="accepted(elemTerminos.checked)">Acepta nuestros <span class="terminos"> términos y condiciones</span></label>
                 </div>
             </div>
-            <div class="form-group">
-                <bUtton class="btn btn-default" (click)="realizarPago()">Realizar Pago</bUtton>
+            <div class="form-group" *ngIf="!isFree" >
+                <button class="btn btn-default btn-block" (click)="realizarPago()" [disabled]='!elemTerminos.checked'>Realizar Pago</button>
             </div>
-        <button type="button" class="form-control btn-block btn-publicar" [disabled]='!elemTerminos.checked' (click)='grabar()'>PUBLICAR PRODUCTO</button>   
+        <button type="button" class="form-control btn-block btn-publicar" [disabled]='(!elemTerminos.checked && isFree || !elemTerminos.checked && !isFree && !culqiPagoOk)' (click)='grabarProducto(elemTerminos.checked)'>PUBLICAR PRODUCTO</button>   
   </div>
 </form>
 

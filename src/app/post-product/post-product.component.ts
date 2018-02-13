@@ -19,16 +19,19 @@ declare var Culqi:any;
   providers:[ServicioService]
 })
 export class PostProductComponent implements OnInit ,AfterViewInit{
-  public listarAllCategory:any[] = [];
+  public listarAllCategory: any[] = [];
   public productLang = ProductLang;
   public customer: Customer = new Customer();
   public addProduct: AddProduct = new AddProduct();
-  public isFree = false;
+  public isFree = true;
   public image: any[] = [];
   private urlPost: string;
-  private errorCulqiMessage:string;
+  private errorCulqiMessage: string;
+  private successCulqiMessage: string;
+  private culqiPagoOk = false;
+  private costImage = 0;
 
-  constructor(private AppService:ServicioService,private router: Router) { }
+  constructor(private AppService:ServicioService, private router: Router) { }
 
   ngOnInit() {
     this.customer = JSON.parse(localStorage.getItem('user')) as Customer;
@@ -50,6 +53,7 @@ export class PostProductComponent implements OnInit ,AfterViewInit{
   realizarPago(): void {
     let data_culqi = null;
     this.errorCulqiMessage = undefined;
+    this.successCulqiMessage = undefined;
     Culqi.createToken();
     const interval = setInterval(() => {
       data_culqi = window['data_culqi']; //Referencia de metodo culqi en index.html
@@ -60,63 +64,102 @@ export class PostProductComponent implements OnInit ,AfterViewInit{
         if (data_culqi.error !== null && data_culqi.error !== undefined){
           this.errorCulqiMessage = data_culqi.error.user_message;
         }else{
-          const culquiInfo = { id: data_culqi.token.id, email: data_culqi.token.email };
+          const culquiInfo = { id: data_culqi.token.id, email: data_culqi.token.email, cost: this.costImage };
           this.AppService.culqiPago({ product: this.addProduct, culqi: culquiInfo }).subscribe(response => {
-            console.log(response.json());
+            const culqiSuccess = response;
+            if (culqiSuccess.object === 'charge'){
+              this.successCulqiMessage = culqiSuccess.outcome.user_message;
+              this.culqiPagoOk = true;
+            }else{
+              this.errorCulqiMessage = culqiSuccess.outcome.user_message;
+            }
           }, error => {
-            console.log(error.json());
+            const errorCulqi = JSON.parse(error.json());
+            this.errorCulqiMessage = errorCulqi.user_message;
           });
         }
       }
     }, 1000);
   }
-  grabar() {
+  grabarProducto(elemTermCondition: boolean) {
+    if (!elemTermCondition){
+      alert("Acepte los terminos y condiciones");
+      return;
+    }
+    this.addProduct.imgData = [];
+    for (let i in this.image) {
+      this.addProduct.imgData.push((document.getElementById('img-principal-' + this.image[i].index) as HTMLImageElement).src)
+    }
 
-    const  imagenesBase46 = [];
-    imagenesBase46.push((document.getElementById('img-principal-0') as HTMLImageElement).src);
-    // imagenesBase46.push((document.getElementById('img-secundaria1') as HTMLImageElement).src);
-    // imagenesBase46.push((document.getElementById('img-secundaria2') as HTMLImageElement).src);
-    this.addProduct.imgData = imagenesBase46;
+    if (!this.formValidate(this.addProduct)){
+      return;
+    }
+
+    if (this.isFree === false && this.culqiPagoOk === false) {
+      alert("realiza el pago, para poder publicar su producto");
+      return;
+    }
+    
     this.addProduct.customerProduct.id_customer = this.customer.id_customer;
-    //
-    /*this.AppService.postProduct({ product: this.addProduct, culqi: culquiInfo }).subscribe(rest => {
-      console.log(rest);
-    });*/
+    this.AppService.postProduct(this.addProduct).subscribe(response => {
+      console.log(response.json());
+    });
   }
 
-  showCulqi(valuepago){
-    if(valuepago === 1 ){
-      this.isFree = false;
+  showCulqi(valuePago){
+    if (valuePago === 1 ){
+      this.isFree = true;
       this.image = [];
-      this.image.push({index:0,class:false});
+      this.image.push({index: 0, class: false});
     }
     else
-      this.isFree= true;
+      this.isFree = false;
       
   }
-  accepted(ischecked){
-    return ischecked;
+  accepted(isChecked){
+    return isChecked;
   }
-  uploadImage(images,index){
+  uploadImage(images, index){
     const ofile = images.target.files[0];
-    var reader = new FileReader();
+    const reader = new FileReader();
     reader.onload = function(e){
-      var result = reader.result;
-      $('#img-principal-'+index).attr("src",result);
+      $('#img-principal-' + index).attr("src", reader.result);
     };
     if(ofile){
       reader.readAsDataURL(ofile);  
     }
   }
-  addImages(photoNumber:number){
+  addImages(photoNumber: number, costImage: number){
+    this.costImage = costImage;
     this.image = [];
     for(let i = 0 ;i <= photoNumber - 1 ;i++){
-      if(i===0){
-        this.image.push({index:i,class:false});
+      if(i === 0){
+        this.image.push({index: i, class: false});
       }else{
-        this.image.push({index:i,class:true});
+        this.image.push({index: i, class: true});
       }
-        
     }
+  }
+  
+
+  formValidate(product: AddProduct): boolean {
+    let response = true;
+    if (product.id_category_default === undefined || product.id_category_default == 0) {
+      alert("Seleccione la categoria");
+      response = false;
+    } else if (product.productLang.name === '' || Object.keys(product.productLang).length == 0){
+      alert("Ingrese el nombre de producto");
+      response = false;
+    } else if (product.productLang.description === '' || product.productLang.description === undefined){
+      alert("Ingresa descripción del producto");
+      response = false;
+    }else if(product.price === 0){
+      alert("Ingresa el precio del producto");
+      response = false;
+    }else if(product.imgData.length === 0){
+      alert(this.isFree?"Selecciona una imagen":"Selecciona uno o mas imagenes");
+      response = false;
+    }
+    return response;
   }
 } 

@@ -65,7 +65,7 @@ export class ServicioService {
   }
 
   public culqiPago(data: any): any{
-    return this.http.post(this.Url+"culqi/payout",data).map((res: Response) => res.json()).catch((error) =>{
+    return this.http.post(this.Url + "culqi/payout", data).map((response: Response) => response.json()).catch((error) =>{
       return Observable.throw(error);
     });
   }

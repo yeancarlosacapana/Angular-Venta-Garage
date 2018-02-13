@@ -12,10 +12,13 @@ export class AddProduct {
     public image: Image;
     public imgData: string[];
     public customerProduct: CustomerProduct;
+    public pago: string;
     constructor(){
         this.productLang = new ProductLang();
         this.image = new Image();
         this.imgData = [];
         this.customerProduct = new CustomerProduct();
+        this.price = 0;
+        this.pago = 'free';
     }
 }

@@ -20,6 +20,8 @@ import { ProductFilterPipe } from './library/product-filter.pipe';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { PostProductComponent } from './post-product/post-product.component';
+import { OnlyNumberDirective } from './library/only-number.directive';
+import { CardNumberDirective } from './library/card-number.directive';
 
 let config = new AuthServiceConfig([
   {
@@ -44,7 +46,9 @@ let config = new AuthServiceConfig([
     SearchComponent,
     ProductFilterPipe,
     ProductDetailComponent,
-    PostProductComponent
+    PostProductComponent,
+    OnlyNumberDirective,
+    CardNumberDirective
   ],
   imports: [
     BrowserModule,
