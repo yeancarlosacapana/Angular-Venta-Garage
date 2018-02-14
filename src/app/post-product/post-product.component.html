@@ -43,13 +43,13 @@
       <p>Metodo de Publicación</p>
             <div class="form-group">
                 <div class="radio">
-                  <label><input type="radio" id="free" name="pago" value="free" [(ngModel)]='addProduct.pago' (change)="showCulqi(1)">GRATIS</label>
+                  <label><input type="radio" id="free" name="pago" value="free" [(ngModel)]='addProduct.orderGarage.method_payout' (change)="showCulqi(1)">GRATIS</label>
                   <p><a href="#">mas información</a></p>
                 </div>
             </div>
             <div class="form-group">
                 <div class="radio">
-                    <label><input type="radio" id="costo" name="pago"  value="cost" [(ngModel)]='addProduct.pago' (change)="showCulqi(2)">COSTO</label>
+                    <label><input type="radio" id="costo" name="pago"  value="cost" [(ngModel)]='addProduct.orderGarage.method_payout' (change)="showCulqi(2)">COSTO</label>
                     <p><a href="#">mas información</a></p>
                 </div>
             </div> 

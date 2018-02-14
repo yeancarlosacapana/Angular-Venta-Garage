@@ -1,8 +1,11 @@
 export class ProductLang {
-  id_product:number;
-  id_lang:number;
-  description:string;
-  description_short:string;
-  link_rewrite:string;
-  name:string;
+  public id_product: number;
+  public id_lang: number;
+  public description: string;
+  public description_short: string;
+  public link_rewrite: string;
+  public name: string;
+  constructor() {
+
+  }
 }

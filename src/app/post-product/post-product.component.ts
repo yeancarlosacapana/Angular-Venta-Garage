@@ -5,24 +5,27 @@ import {AddProduct} from '../clases/add-product';
 import {ProductLang} from '../clases/product-lang';
 import {Image} from '../clases/image';
 import { Customer } from '../clases/customer';
+import { CustomerProduct } from '../clases/customer-product';
+import { OrderGarage } from '../clases/order-garage';
 
 // Declaramos las variables para jQuery
-declare var jQuery:any;
-declare var $:any;
-declare var Culqi:any;
+declare var jQuery: any;
+declare var $: any;
+declare var Culqi: any;
 
 
 @Component({
   selector: 'app-post-product',
   templateUrl: './post-product.component.html',
   styleUrls: ['./post-product.component.sass'],
-  providers:[ServicioService]
+  providers: [ServicioService]
 })
-export class PostProductComponent implements OnInit ,AfterViewInit{
+export class PostProductComponent implements OnInit, AfterViewInit {
   public listarAllCategory: any[] = [];
   public productLang = ProductLang;
-  public customer: Customer = new Customer();
-  public addProduct: AddProduct = new AddProduct();
+  public oCustomerProduct = new CustomerProduct();
+  public customer = new Customer();
+  public addProduct = new AddProduct();
   public isFree = true;
   public image: any[] = [];
   private urlPost: string;
@@ -31,43 +34,50 @@ export class PostProductComponent implements OnInit ,AfterViewInit{
   private culqiPagoOk = false;
   private costImage = 0;
 
-  constructor(private AppService:ServicioService, private router: Router) { }
+  constructor(private AppService: ServicioService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.params.subscribe(params =>{
+      this.addProduct.id_product = +params['id_product'];
+      this.customer.id_customer = +params['id_customer'];
+      if (this.addProduct.id_product > 0) {
+        this.getProductMeById(this.customer.id_customer, this.addProduct.id_product);
+      }
+    });
     this.customer = JSON.parse(localStorage.getItem('user')) as Customer;
-    if(this.customer == undefined || this.customer == null){
+    if (this.customer === undefined || this.customer == null) {
       return ;
     }
-    this.urlPost = "/postproduct/"+this.customer.id_customer;
-    this.router.navigateByUrl(this.urlPost);
-    this.AppService.getAllCategory().subscribe(rest=>{
-      //console.log('ejecutando');
+    this.AppService.getAllCategory().subscribe(rest => {
+      // console.log('ejecutando');
       this.listarAllCategory = rest.json();
-      //console.log(this.listarAllCategory);
+      // console.log(this.listarAllCategory);
     });
-    this.image.push({index:0,class:false});
+    this.image.push({index: 0, class: false});
   }
+
   ngAfterViewInit(): void {
     Culqi.init();
   }
+  
   realizarPago(): void {
     let data_culqi = null;
     this.errorCulqiMessage = undefined;
     this.successCulqiMessage = undefined;
     Culqi.createToken();
     const interval = setInterval(() => {
-      data_culqi = window['data_culqi']; //Referencia de metodo culqi en index.html
+      data_culqi = window['data_culqi']; // Referencia de metodo culqi en index.html
       if (data_culqi !== undefined && data_culqi !== '' && data_culqi !== null) {
         clearInterval(interval);
         window['data_culqi'] = undefined;
         console.log(data_culqi);
-        if (data_culqi.error !== null && data_culqi.error !== undefined){
+        if (data_culqi.error !== null && data_culqi.error !== undefined) {
           this.errorCulqiMessage = data_culqi.error.user_message;
-        }else{
+        }else {
           const culquiInfo = { id: data_culqi.token.id, email: data_culqi.token.email, cost: this.costImage };
           this.AppService.culqiPago({ product: this.addProduct, culqi: culquiInfo }).subscribe(response => {
             const culqiSuccess = response;
-            if (culqiSuccess.object === 'charge'){
+            if (culqiSuccess.object === 'charge') {
               this.successCulqiMessage = culqiSuccess.outcome.user_message;
               this.culqiPagoOk = true;
             }else{
@@ -81,9 +91,10 @@ export class PostProductComponent implements OnInit ,AfterViewInit{
       }
     }, 1000);
   }
+
   grabarProducto(elemTermCondition: boolean) {
-    if (!elemTermCondition){
-      alert("Acepte los terminos y condiciones");
+    if (!elemTermCondition) {
+      alert('Acepte los terminos y condiciones');
       return;
     }
     this.addProduct.imgData = [];
@@ -101,6 +112,8 @@ export class PostProductComponent implements OnInit ,AfterViewInit{
     }
     
     this.addProduct.customerProduct.id_customer = this.customer.id_customer;
+    this.addProduct.orderGarage.pasarella = this.isFree?'Free':'Culqi';
+    this.addProduct.orderGarage.total = this.costImage;
     this.AppService.postProduct(this.addProduct).subscribe(response => {
       console.log(response.json());
     });
@@ -116,9 +129,11 @@ export class PostProductComponent implements OnInit ,AfterViewInit{
       this.isFree = false;
       
   }
+
   accepted(isChecked){
     return isChecked;
   }
+
   uploadImage(images, index){
     const ofile = images.target.files[0];
     const reader = new FileReader();
@@ -129,6 +144,7 @@ export class PostProductComponent implements OnInit ,AfterViewInit{
       reader.readAsDataURL(ofile);  
     }
   }
+
   addImages(photoNumber: number, costImage: number){
     this.costImage = costImage;
     this.image = [];
@@ -140,7 +156,6 @@ export class PostProductComponent implements OnInit ,AfterViewInit{
       }
     }
   }
-  
 
   formValidate(product: AddProduct): boolean {
     let response = true;
@@ -162,4 +177,19 @@ export class PostProductComponent implements OnInit ,AfterViewInit{
     }
     return response;
   }
-} 
+
+  getProductMeById(id_customer: number, id_product: number) {
+    this.oCustomerProduct.id_customer = id_customer;
+    this.oCustomerProduct.id_product = id_product;
+    this.AppService.getProductByCustomer(this.oCustomerProduct).subscribe(response => {
+      const product = response.json();
+      this.addProduct = <AddProduct>product;
+      this.addProduct.productLang = new ProductLang();
+      this.addProduct.productLang.name = product.name;
+      this.addProduct.productLang.description = product.description;
+      this.addProduct.orderGarage = new OrderGarage();
+      this.addProduct.orderGarage.method_payout = product.method_payout;
+      console.log(response.json());
+    });
+  }
+}

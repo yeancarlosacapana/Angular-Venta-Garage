@@ -1,8 +1,10 @@
 import {ProductLang} from '../clases/product-lang';
 import {Image} from '../clases/image';
 import { CustomerProduct } from './customer-product';
+import { OrderGarage } from './order-garage';
 
 export class AddProduct {
+    public id_product: number;
     public id_category_default: number;
     public price: number;
     public condition: string;
@@ -12,13 +14,14 @@ export class AddProduct {
     public image: Image;
     public imgData: string[];
     public customerProduct: CustomerProduct;
-    public pago: string;
-    constructor(){
+    public orderGarage: OrderGarage;
+    constructor() {
         this.productLang = new ProductLang();
         this.image = new Image();
+        this.orderGarage = new OrderGarage();
         this.imgData = [];
         this.customerProduct = new CustomerProduct();
         this.price = 0;
-        this.pago = 'free';
+        this.id_product = 0;
     }
 }

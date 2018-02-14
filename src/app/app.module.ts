@@ -22,6 +22,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { PostProductComponent } from './post-product/post-product.component';
 import { OnlyNumberDirective } from './library/only-number.directive';
 import { CardNumberDirective } from './library/card-number.directive';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 let config = new AuthServiceConfig([
   {
@@ -48,7 +49,8 @@ let config = new AuthServiceConfig([
     ProductDetailComponent,
     PostProductComponent,
     OnlyNumberDirective,
-    CardNumberDirective
+    CardNumberDirective,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,

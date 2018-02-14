@@ -4,6 +4,7 @@ import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/map';  
 
 import { Customer } from './clases/customer';
+import { CustomerProduct } from './clases/customer-product';
 
 @Injectable()
 export class ServicioService {
@@ -68,5 +69,9 @@ export class ServicioService {
     return this.http.post(this.Url + "culqi/payout", data).map((response: Response) => response.json()).catch((error) =>{
       return Observable.throw(error);
     });
+  }
+
+  public getProductByCustomer(oCustomerProduct: CustomerProduct): any {
+    return this.http.post(this.Url + "product/customer", oCustomerProduct);
   }
 }

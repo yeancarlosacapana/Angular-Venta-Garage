@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="col-md-10">
+    <h1>Hola, {{eCustomer.firstname +' '+ eCustomer.lastname}}</h1>
+  </div>
+  <div class="col-md2">
+    <a [routerLink]="[urlProductForm,eCustomer.id_customer,0]" class="btn btn-default">Publicar Post</a>
+  </div>
+</div>
+
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <th>Categoria</th>
+      <th>Nombre de porducto</th>
+      <th>Precio</th>
+      <th>Modalidad de pago</th>
+      <th>Costo</th>
+      <th>Entidad</th>
+      <th>Estado</th>
+      <th>Acciones</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of listProduct" >
+        <td>{{product.category}}</td>
+        <td>{{product.name}}</td>
+        <td>{{product.price | currency : 'S/.'}}</td>
+        <td>{{product.method_payout}}</td>
+        <td>{{product.total}}</td>
+        <th>{{product.pasarella}}</th>
+        <td>Activo</td>
+        <td>
+          <a class="btn btn-info" (click)="editProduct(product)">Editar</a>
+          <a class="btn btn-danger" (click)="deleteProduct(product)">Eliminar</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

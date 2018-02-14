@@ -5,6 +5,7 @@ import { Address } from '../clases/address';
 import {AuthService} from 'angular4-social-login';
 import {FacebookLoginProvider,GoogleLoginProvider} from 'angular4-social-login';
 import { SocialUser } from 'angular4-social-login';
+import { Router } from '@angular/router';
 
 declare var jQuery:any;
 declare var $:any;
@@ -16,24 +17,25 @@ declare var $:any;
   providers:[ServicioService]
 })
 export class HeaderComponent implements OnInit {
-  public address :Address = new Address();
-  public customer : Customer=new Customer();
+  public address: Address = new Address();
+  public customer: Customer=new Customer();
 
-  private user : SocialUser = new SocialUser();
-  private loggedIn : boolean;
-  public responseCustomer:any[] = [];
-  public state:any[]=[];
-  public provincia:any[]=[];
-  public distrito:any[]=[];
+  private user: SocialUser = new SocialUser();
+  private loggedIn: boolean;
+  public responseCustomer: any[] = [];
+  public state: any[] = [];
+  public provincia: any[] = [];
+  public distrito: any[] = [];
 
-  email:string= '';
-  passwd:string= '';
+  public email = '';
+  public passwd = '';
   
   public sMessageSocial = "";
   public registerFarom = "form";
+  public sUrlProfile = '/user-profile/';
 
 
-  constructor(private appService:ServicioService,private authService:AuthService) { }
+  constructor(private appService: ServicioService, private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
     this.authService.authState.subscribe((user)=>{
@@ -101,10 +103,11 @@ export class HeaderComponent implements OnInit {
         console.log('user not found')
       }else{
         console.log(this.customer); 
-        this.customer=rest.json();
+        this.customer = rest.json();
         this.customer.address = this.address;
         localStorage.setItem('user',JSON.stringify(rest.json()));
         jQuery('#login').modal('hide');
+        this.router.navigateByUrl(this.sUrlProfile + this.customer.id_customer.toString());
       }
     });
   }
