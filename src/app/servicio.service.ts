@@ -1,32 +1,33 @@
 import { Injectable } from '@angular/core';
 import {Response, Http} from '@angular/http';
 import {Observable} from 'rxjs/Rx';
-import 'rxjs/add/operator/map';  
+import 'rxjs/add/operator/map';
 
 import { Customer } from './clases/customer';
 import { CustomerProduct } from './clases/customer-product';
 
 @Injectable()
 export class ServicioService {
-  //creandp variable
-  private Url:string = "http://127.0.0.1:8000/api/";
-  //private Url:string = "http://apigarage.hogaryspacios.com/api/";
+  // creando variable
+  private Url = 'http://127.0.0.1:8000/api/';
   
-  constructor(private http:Http) { }
-  public getSlider(){
-    return this.http.get(this.Url+'slider');
+  // private Url:string = "http://apigarage.hogaryspacios.com/api/";
+
+  constructor(private http: Http) { }
+  public getSlider() {
+    return this.http.get(this.Url + 'slider');
   }
   public getCategory() {
-    return this.http.get(this.Url+"category");
+    return this.http.get(this.Url + 'category');
   }
   public getProductByIdCategory(id_category){
-    return this.http.get(this.Url+'itemCategory/'+id_category);
+    return this.http.get(this.Url + 'itemCategory/' + id_category);
   } 
   public getProductName(name){
-    return this.http.get(this.Url+'search/'+name);
+    return this.http.get(this.Url + 'search/' + name);
   }
-  public getProductPriceByCategory(id_category,minPrice , maxPrice , sortBy){
-    return this.http.get(this.Url+'filterPriceCategory?categoriaId='+id_category+'&precioMin='+minPrice+'&precioMax='+maxPrice+'&_sort='+sortBy);
+  public getProductPriceByCategory(id_category, minPrice, maxPrice, sortBy) {
+    return this.http.get(this.Url + 'filterPriceCategory?categoriaId='+ id_category + '&precioMin=' + minPrice + '&precioMax=' + maxPrice + '&_sort=' + sortBy);
   }
   public getProductPriceByName(name,minPrice,maxPrice,sortBy){
     return this.http.get(this.Url+'filterPriceName?name='+name+'&precioMin='+minPrice+'&precioMax='+maxPrice+'&_sort='+sortBy);
@@ -62,7 +63,7 @@ export class ServicioService {
     return this.http.get(this.Url+'subcategoria/'+id_category);
   }
   public loginSocial(customer: Customer): any {
-    return this.http.post(this.Url +"loginSocial",customer);
+    return this.http.post(this.Url + 'loginSocial', customer);
   }
 
   public culqiPago(data: any): any{
