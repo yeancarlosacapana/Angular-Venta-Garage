@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-10">
-    <h1>Hola, {{eCustomer.firstname +' '+ eCustomer.lastname}}</h1>
+    <h1 class="nick-name">Hola, {{eCustomer.firstname +' '+ eCustomer.lastname}}</h1>
   </div>
   <div class="col-md2">
     <a [routerLink]="[urlProductForm,eCustomer.id_customer,0]" class="btn btn-default">Publicar Post</a>

@@ -9,9 +9,9 @@ import { CustomerProduct } from './clases/customer-product';
 @Injectable()
 export class ServicioService {
   // creando variable
-  private Url = 'http://127.0.0.1:8000/api/';
-  
-  // private Url:string = "http://apigarage.hogaryspacios.com/api/";
+  // private Url = 'http://127.0.0.1:8000/api/';
+
+  private Url:string = "http://apigarage.hogaryspacios.com/api/";
 
   constructor(private http: Http) { }
   public getSlider() {
@@ -22,7 +22,7 @@ export class ServicioService {
   }
   public getProductByIdCategory(id_category){
     return this.http.get(this.Url + 'itemCategory/' + id_category);
-  } 
+  }
   public getProductName(name){
     return this.http.get(this.Url + 'search/' + name);
   }
