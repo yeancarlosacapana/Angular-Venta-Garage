@@ -1,34 +1,36 @@
-<div class="row">
+<div class="row nick-header">
   <div class="col-md-10">
     <h1 class="nick-name">Hola, {{eCustomer.firstname +' '+ eCustomer.lastname}}</h1>
   </div>
-  <div class="col-md2">
-    <a [routerLink]="[urlProductForm,eCustomer.id_customer,0]" class="btn btn-default">Publicar Post</a>
+  <div class="col-md-2">
+    <div class="button-post">
+      <a [routerLink]="[urlProductForm,eCustomer.id_customer,0]" class="btn btn-default button">Publicar Post</a>
+    </div>
   </div>
 </div>
 
 <div class="table-responsive">
   <table class="table">
-    <thead>
-      <th>Categoria</th>
-      <th>Nombre de porducto</th>
-      <th>Precio</th>
-      <th>Modalidad de pago</th>
-      <th>Costo</th>
-      <th>Entidad</th>
-      <th>Estado</th>
-      <th>Acciones</th>
+    <thead class="header-user">
+      <th class="title">Categoria</th>
+      <th class="title">Nombre de porducto</th>
+      <th class="title">Precio</th>
+      <th class="title">Modalidad de pago</th>
+      <th class="title">Costo</th>
+      <th class="title">Entidad</th>
+      <th class="title">Estado</th>
+      <th class="title">Acciones</th>
     </thead>
-    <tbody>
+    <tbody class="content-post">
       <tr *ngFor="let product of listProduct" >
-        <td>{{product.category}}</td>
-        <td>{{product.name}}</td>
-        <td>{{product.price | currency : 'S/.'}}</td>
-        <td>{{product.method_payout}}</td>
-        <td>{{product.total}}</td>
-        <th>{{product.pasarella}}</th>
-        <td>Activo</td>
-        <td>
+        <td class="description">{{product.category}}</td>
+        <td class="description">{{product.name}}</td>
+        <td class="description">{{product.price | currency : 'S/.'}}</td>
+        <td class="description">{{product.method_payout}}</td>
+        <td class="description">{{product.total}}</td>
+        <th class="description">{{product.pasarella}}</th>
+        <td class="description">Activo</td>
+        <td class="description">
           <a class="btn btn-info" (click)="editProduct(product)">Editar</a>
           <a class="btn btn-danger" (click)="deleteProduct(product)">Eliminar</a>
         </td>

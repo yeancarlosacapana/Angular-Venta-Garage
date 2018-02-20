@@ -1,23 +1,25 @@
 <div class="header col-lg-l2">
   <!-- <div class="container"> -->
 <div class="contenedor-logos col-lg-6">
+
 <div class="logo col-lg-6">
   <a [routerLink]="['/']"><img src="assets/img/logo.svg" class="img-logo img-responsive"></a>
 </div>
+
 <div class="sub-logo col-lg-3">
   <img src="assets/img/garage.svg" class="img-logo img-responsive">
 </div>
-</div> 
+</div>
 <div class="busqueda col-lg-4 ">
-<app-search></app-search>
-</div>             
+  <app-search></app-search>
+</div>
 <div class="registro-login col-lg-2">
   <a href="" *ngIf="!customer.is_logged" class="registrate" data-toggle="modal" data-target="#registrar">Registrate</a>
-  <a [routerLink]="['/user-profile/',customer.id_customer]"  *ngIf="customer.is_logged"> {{customer.firstname}}</a> 
+  <a [routerLink]="['/user-profile/',customer.id_customer]"  *ngIf="customer.is_logged"> {{customer.firstname}}</a>
   <button type="button" class="btn btn-default ingresa btn-sm" *ngIf="!customer.is_logged" data-toggle="modal" data-target="#login">
     <span class="glyphicon glyphicon-log-in"></span> Log in
   </button>
-  <a [routerLink]="['/postproduct/:id_customer']" class="display:none;"></a> 
+  <a [routerLink]="['/postproduct/:id_customer']" class="display:none;"></a>
   <div class="icon-user"></div>
   <button type="button" *ngIf="customer.is_logged" (click)="logout()" class="btn btn-default btn-sm">
     <span class="glyphicon glyphicon-log-out"></span>Salir
@@ -26,7 +28,7 @@
 <!-- modal  -->
 <div id="login" class="modal fade" role="dialog">
     <div class="modal-dialog">
-  
+
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
@@ -47,18 +49,18 @@
                     <div class="form-group">
                       <button class="btn btn-info facebook" (click)="signInWithFB()">Facebook</button>
                       <button class="btn btn-warning google" (click)="sigInWithGoogle()">Google</button>
-                    </div>                               
+                    </div>
                 </form>
         </div>
       </div>
-  
+
     </div>
   </div>
 <!-- cierre modal -->
 <!-- modal  -->
 <div id="registrar" class="modal fade" role="dialog">
     <div class="modal-dialog">
-  
+
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
@@ -121,11 +123,11 @@
                         <label>Contraseña</label>
                         <input type="password" class="form-control" name="passwd" [(ngModel)]='customer.passwd' [disabled]="customer.login_media != 'form'">
                     </div>                    <label class="label label-info">{{sMessageSocial}}</label>
-                    <button type="button" class="btn  btn-block" (click)='grabar()' >Register</button>                                
+                    <button type="button" class="btn  btn-block" (click)='grabar()' >Register</button>
                 </form>
         </div>
       </div>
-  
+
     </div>
   </div>
 <!-- cierre modal -->
