@@ -1,5 +1,12 @@
-$blanco : #FFF;
-$colorBottom : #FFD015;
+$blanco : #FFF
+$colorBottom : #FFD015
+$color1: #FFD015
+$color-hover: #ffb520
+$colo2: #FFF
+$shadow: 2px 2px 2px 0px rgba(0,0,0,.16)
+
+@import "../../assets/css/variables"
+
 .contenedor-lista-producto
     padding: 0
     display: flex
@@ -10,27 +17,38 @@ $colorBottom : #FFD015;
 
         .contenedor-product
             background: $blanco
-            border-radius: .7em
-            
-            .img-productos
-                border-radius: .7em
+            border-radius: 10px
+            box-shadow: $shadow
+            height: 320px
+            width: 100%
+
+            .contenedor-img-product
+              height: 235px
+              padding: 4%
+              width: 235px
+
+              .img-productos
+                height: 100%
+                width: 100%
+                object-fit: cover
 
             .contenedor-price-condicion
                 display: flex
                 justify-content: space-between
                 align-items: center
                 padding: 0 1em
-                
+
                 .price
                     color: $colorBottom
-                    font-family: gothambold
                     font-size: 16pt
-                    font-weight: bold
                     text-align: left
 
                 .condicion
                     font-weight: bold
-                     
+
+.contenedor-texto
+  padding: 0 4%
+
 .contenedor-precio
     display: flex
     justify-content: center
@@ -42,7 +60,7 @@ $colorBottom : #FFD015;
 .pagination
     display: flex
     justify-content: flex-end
-         
+
 .btn
     background : $colorBottom
     color: $blanco

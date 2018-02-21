@@ -1,12 +1,12 @@
 <div class="slider col-lg-12">
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">   
+    <div id="myCarousel" class="primary carousel slide" data-ride="carousel">
         <!-- Wrapper for slides -->
         <div class="carousel-inner">
-                            <div *ngFor="let slider of listarSlider;let i = index;" class="item" [ngClass]="{'active':i === 0,'':i>0}">
-                                <img src="{{slider.url}}" class="img-responsive img-banner"/>
+                            <div *ngFor="let slider of listarSlider;let i = index;" class="contenedor-imagen item" [ngClass]="{'active':i === 0,'':i>0}">
+                                <img src="{{slider.url}}" class="img-responsive "/>
                             </div>
                         </div>
-                      
+
                         <!-- Left and right controls -->
                         <a class="left carousel-control" href="#myCarousel" data-slide="prev">
                           <span class="glyphicon glyphicon-chevron-left"></span>

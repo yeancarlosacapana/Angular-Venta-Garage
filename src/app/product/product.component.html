@@ -1,7 +1,7 @@
 <!-- {{listarProduct.per_page}}  -->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <div class="container">
-          <!-- <div class="col-lg-12">  
+          <!-- <div class="col-lg-12">
               <ol class="contenedor-etiqueta">
                   <a href="#" class="enlace-etiqueta"><li class="etiqueta">Homepage</li></a>
                   <a href="#" class="enlace-etiqueta"><li class="etiqueta">Venta de Gerage</li></a>
@@ -14,7 +14,7 @@
                     <li *ngFor="let subcategory of getSubCategory">
                         <a [routerLink]="['/category-product','cat',subcategory.id_category]">{{subcategory.name}}</a>
                     </li>
-                  </ul> 
+                  </ul>
               </div>
               <div class="filtros">
                   <h5>
@@ -25,7 +25,7 @@
                   <div id="slider-range"></div>
                   <div class="contenedor-precio">
                       <input type="text" name="__" id="amount"  min="240" max="10000" class="txt-filtrar" value="0" >
-                      <span class="glyphicon glyphicon-minus"></span>   
+                      <span class="glyphicon glyphicon-minus"></span>
                       <input type="text" name="_" id="amount1"  min="240" max="10000" class="txt-filtrar" value="1000">
                   </div>
                   <button type="submit" class="btn-filtrar btn btn-block" (click)="getfiltePrice()">Filtrar Precio</button>
@@ -51,7 +51,7 @@
                       <form action="">
                           <div class="form-group desplazar-pagina">
                               <label for="porpaginas">Producto por página:</label>
-                              <select class="form-control porpagina" id="porpaginas" data-size="4"> 
+                              <select class="form-control porpagina" id="porpaginas" data-size="4">
                                   <option value="1">1</option>
                                   <option value="2">2</option>
                                   <option value="3">3</option>
@@ -65,9 +65,9 @@
                           </div>
                       </form>
                   </div> -->
-                  <div class="col-lg-12 contenedor-ordenar text-right"> 
+                  <div class="col-lg-12 contenedor-ordenar text-right">
                       <label class="label-ordenar mr-1">Ordenar por</label>
-                      <div class="col-lg-6 contenedor-dropdown dropdown pull-right select-title">                   
+                      <div class="col-lg-6 contenedor-dropdown dropdown pull-right select-title">
                         <select class="form-control" [(ngModel)]="oFilterProduct.sortBy" (change)="getfiltePrice(oFilterProduct)">
                             <option value="popularity">Popularidad</option>
                             <option value="price|asc">Precio: Menor - Mayor</option>
@@ -75,20 +75,20 @@
                             <option value="new">Lo mas reciente</option>
                             <option value="name|asc">Titulo : A - Z</option>
                             <option value="name|des">Titulo : Z - A</option>
-                        </select>  
+                        </select>
                       </div>
                   </div>
                   <div class="col-xs-12 col-lg-12 contenedor-lista-producto" >
-                    
+
                       <div class="content-product col-lg-4" *ngFor="let productos of listarProduct | productFilter:eProduct | paginate: { itemsPerPage: 10, currentPage: p }">
                         <a [routerLink]="['/detail-product','id',productos.id_product]" class="enlace-product">
                             <div class="contenedor-product">
                                     <div class="contenedor-img-product">
                                         <img src="{{productos.url}}" alt="" class="img-responsive img-productos">
                                     </div>
-                                        
+
                                     <div class="contenedor-texto">
-                                        <p class="text-left">{{(productos.producto.length>6)? (productos.producto|slice:0:30)+'..':(productos.producto)}}</p>
+                                        <p class="tt text-left">{{(productos.producto.length>6)? (productos.producto|slice:0:30)+'..':(productos.producto)}}</p>
                                     </div>
                                     <div class="contenedor-price-condicion">
                                         <span class="price">{{productos.price  | currency : 'S/.'}}</span>
@@ -99,6 +99,6 @@
                       </div>
                       <pagination-controls (pageChange)="p = $event" class="col-lg-12"></pagination-controls>
                   </div>
-                 
-          </div>          
+
+          </div>
         </div>
