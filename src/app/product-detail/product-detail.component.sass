@@ -11,17 +11,20 @@
       padding: 2% 0
 
       .text-item-condicion
+        color: $black-gray
         margin: 0 1em 0 0
 
       .item-condicion
-        padding: .2em 1.4em
         background: $white
         border-radius: 5px
         box-shadow: $shadow
+        color: $black-gray
         cursor: default
+        padding: .2em 1.4em
 
     .descripcion-item
         p
+          color: $black-gray
           text-align: justify
 
     .contenedor-btn-contact
@@ -34,8 +37,18 @@
       .btn-contactar-vendedor:hover
         background: $yellow-hover
 
-.col-lg-8
+.imagen-principal
   #main_area
-    .col-sm-3
+    .col-sm-4
       .hide-bullets
         list-style: none
+
+    .imagen-xl
+      .carousel-inner
+        height: 460px
+        width: 460px
+        .item
+          img
+            height: 100%
+            object-fit: cover
+

@@ -88,7 +88,7 @@
                                     </div>
 
                                     <div class="contenedor-texto">
-                                        <p class="tt text-left">{{(productos.producto.length>6)? (productos.producto|slice:0:45)+'..':(productos.producto)}}</p>
+                                        <p class="tt text-left">{{(productos.producto.length>6)? (productos.producto|slice:0:30)+'..':(productos.producto)}}</p>
                                     </div>
                                     <div class="contenedor-price-condicion">
                                         <span class="price">{{productos.price  | currency : 'S/.'}}</span>

@@ -11,47 +11,57 @@ $color-hover: #ffb520
     flex-wrap: wrap
 
     .content-product
-        margin: 2% 0
+      margin: 2% 0
 
-        .contenedor-product
-            background: $white
-            border-radius: 10px
-            box-shadow: $shadow
-            height: 320px
+      .contenedor-product
+        background: $white
+        border-radius: 10px
+        box-shadow: $shadow
+        height: 300px
+        width: 100%
+
+
+
+        .contenedor-img-product
+          height: 235px
+          padding: 4%
+          width: 235px
+
+          .img-productos
+            height: 100%
             width: 100%
+            object-fit: cover
 
-            .contenedor-img-product
-              height: 235px
-              padding: 4%
-              width: 235px
-
-              .img-productos
-                height: 100%
-                width: 100%
-                object-fit: cover
-
-            .contenedor-price-condicion
-              align-items: center
-              display: flex
-              justify-content: space-between
-              margin-bottom: 0
-              padding: 0 1em
+        .contenedor-price-condicion
+          align-items: center
+          display: flex
+          justify-content: space-between
+          margin-bottom: 0
+          padding: 0 1em
 
 
-              .price
-                color: $yellow
-                font-family: "Gotham Bold"
-                font-size: 16pt
-                text-align: left
+          .price
+            color: $yellow
+            font-family: "Gotham Bold"
+            font-size: 15pt
+            text-align: left
 
-              .condicion
-                color: $black-gray
-                font-weight: bold
+          .condicion
+            color: $black-gray
+            font-weight: bold
+            font-size: 14px
+
+      .contenedor-product:hover
+        box-shadow: $shadow-hover
+        transition: $smoothness
+        height: 340px
+
 
 .contenedor-texto
   color: $black-gray
   font-family: "Gotham Book"
   margin: auto
+  font-size: 13px
   padding: 0 4%
 
 
