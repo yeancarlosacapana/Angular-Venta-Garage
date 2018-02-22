@@ -1,36 +1,41 @@
-$primary-color: #FFD015
-$blanco: #fff
+@import "../../assets/css/variables"
+
 .col-lg-4
     .item-price
-        font-size: 20pt
-        font-family: gothambold
-        font-weight: bold
-        color: $primary-color    
+      font-size: 20pt
+      font-family: "Gotham Bold"
+      font-weight: bold
+      color: $yellow
 
     .contenedor-item-condicion
-        padding: 2% 0
-        .text-item-condicion
-            margin: 0 1em 0 0
-        .item-condicion
-            padding: .2em 1.4em
-            background: $blanco
-            border-radius: 5px
-            box-shadow: 1px 1px 1px #dddddd
-            cursor: default 
+      padding: 2% 0
+
+      .text-item-condicion
+        margin: 0 1em 0 0
+
+      .item-condicion
+        padding: .2em 1.4em
+        background: $white
+        border-radius: 5px
+        box-shadow: $shadow
+        cursor: default
 
     .descripcion-item
         p
-            text-align: justify
+          text-align: justify
 
     .contenedor-btn-contact
-        .btn-contactar-vendedor
-            background: $primary-color
-            color: $blanco
-            font-weight: bold
-            font-size: 9pt
+      .btn-contactar-vendedor
+        background: $yellow
+        color: $white
+        font-weight: bold
+        font-size: 9pt
+
+      .btn-contactar-vendedor:hover
+        background: $yellow-hover
 
 .col-lg-8
-    #main_area
-        .col-sm-3
-            .hide-bullets
-                list-style: none
+  #main_area
+    .col-sm-3
+      .hide-bullets
+        list-style: none

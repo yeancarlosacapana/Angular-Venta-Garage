@@ -1,32 +1,33 @@
-<div class="header col-lg-l2">
-    <!-- <div class="container"> -->
-  <div class="contenedor-logos col-lg-6">
+<header class="header">
+  <div class="row">
+      <!-- <div class="container"> -->
+    <div class="contenedor-logos col-lg-6 col-md-5 col-sm-4 col-xs-6">
+      <div class="logo col-lg-8 col-xs-8">
+        <a [routerLink]="['/']"><img src="assets/img/logo.svg" class="img-logo img-responsive"></a>
+      </div>
 
-  <div class="logo col-lg-6">
-    <a [routerLink]="['/']"><img src="assets/img/logo.svg" class="img-logo img-responsive"></a>
-  </div>
+      <div class="sub-logo col-lg-4 col-xs-4 ">
+        <img src="assets/img/garage.svg" class="img-logo img-responsive">
+      </div>
+    </div>
+    <div class="busqueda col-lg-4 col-md-4 col-sm-4 col-xs-2">
+      <app-search></app-search>
+    </div>
 
-  <div class="sub-logo col-lg-3 ">
-    <img src="assets/img/garage.svg" class="img-logo img-responsive">
+    <div class="registro-login col-lg-2 col-md-3 col-sm-4 col-xs-4">
+      <a href="" *ngIf="!customer.is_logged" class="registrate" data-toggle="modal" data-target="#registrar">Registrate</a>
+      <a [routerLink]="['/user-profile/',customer.id_customer]"  *ngIf="customer.is_logged"> {{customer.firstname}}</a>
+      <button type="button" class="btn btn-default ingresa btn-sm" *ngIf="!customer.is_logged" data-toggle="modal" data-target="#login">
+        Inicia Sesion
+      </button>
+      <a [routerLink]="['/postproduct/:id_customer']" class="display:none;"></a>
+      <div class="icon-user"></div>
+      <button type="button" *ngIf="customer.is_logged" (click)="logout()" class="btn btn-default btn-sm">
+        Cerrar Sesion
+      </button>
+    </div>
   </div>
-  </div>
-  <div class="busqueda col-lg-4">
-    <app-search></app-search>
-  </div>
-  <div class="registro-login col-lg-2">
-    <a href="" *ngIf="!customer.is_logged" class="registrate" data-toggle="modal" data-target="#registrar">Registrate</a>
-    <a [routerLink]="['/user-profile/',customer.id_customer]"  *ngIf="customer.is_logged"> {{customer.firstname}}</a>
-    <button type="button" class="btn btn-default ingresa btn-sm" *ngIf="!customer.is_logged" data-toggle="modal" data-target="#login">
-      Inicia Sesion
-    </button>
-    <a [routerLink]="['/postproduct/:id_customer']" class="display:none;"></a>
-    <div class="icon-user"></div>
-    <button type="button" *ngIf="customer.is_logged" (click)="logout()" class="btn btn-default btn-sm">
-      Cerrar Sesion
-    </button>
-
-  </div>
-</div>
+</header>
 
 <!-- modal  -->
 <div id="login" class="modal fade" role="dialog">

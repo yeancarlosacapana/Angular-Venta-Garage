@@ -1,3 +1,4 @@
+@import "../../assets/css/variables"
 .slider
   padding: 0
 
@@ -27,8 +28,23 @@
   margin-right: -10px
 
 .contenedor-imagen
-  height: 400px
   width: 100%
+
+  @media screen and (max-width: $lg)
+    height: 350px
+    transition: $smoothness
+
+  @media screen and (max-width: $md)
+    height: 300px
+    transition: $smoothness
+
+  @media screen and (max-width: $sm)
+    height: 270px
+    transition: $smoothness
+
+  @media screen and (max-width: $xs)
+    height: 220px
+    transition: $smoothness
 
   img
     width: 100%

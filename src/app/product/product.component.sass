@@ -1,11 +1,9 @@
-$blanco : #FFF
-$colorBottom : #FFD015
-$color1: #FFD015
-$color-hover: #ffb520
-$colo2: #FFF
-$shadow: 2px 2px 2px 0px rgba(0,0,0,.16)
-
 @import "../../assets/css/variables"
+
+$color-hover: #ffb520
+
+
+
 
 .contenedor-lista-producto
     padding: 0
@@ -16,7 +14,7 @@ $shadow: 2px 2px 2px 0px rgba(0,0,0,.16)
         margin: 2% 0
 
         .contenedor-product
-            background: $blanco
+            background: $white
             border-radius: 10px
             box-shadow: $shadow
             height: 320px
@@ -33,21 +31,29 @@ $shadow: 2px 2px 2px 0px rgba(0,0,0,.16)
                 object-fit: cover
 
             .contenedor-price-condicion
-                display: flex
-                justify-content: space-between
-                align-items: center
-                padding: 0 1em
+              align-items: center
+              display: flex
+              justify-content: space-between
+              margin-bottom: 0
+              padding: 0 1em
 
-                .price
-                    color: $colorBottom
-                    font-size: 16pt
-                    text-align: left
 
-                .condicion
-                    font-weight: bold
+              .price
+                color: $yellow
+                font-family: "Gotham Bold"
+                font-size: 16pt
+                text-align: left
+
+              .condicion
+                color: $black-gray
+                font-weight: bold
 
 .contenedor-texto
+  color: $black-gray
+  font-family: "Gotham Book"
+  margin: auto
   padding: 0 4%
+
 
 .contenedor-precio
     display: flex
@@ -62,8 +68,8 @@ $shadow: 2px 2px 2px 0px rgba(0,0,0,.16)
     justify-content: flex-end
 
 .btn
-    background : $colorBottom
-    color: $blanco
+    background : $yellow
+    color: $white
 .enlace-product
     color: initial
     text-decoration: none
