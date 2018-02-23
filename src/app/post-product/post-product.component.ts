@@ -116,6 +116,10 @@ export class PostProductComponent implements OnInit, AfterViewInit {
     this.addProduct.orderGarage.total = this.costImage;
     this.AppService.postProduct(this.addProduct).subscribe(response => {
       console.log(response.json());
+      if(Object.keys(response.json()).length > 0){
+        this.router.navigateByUrl("/user-profile/" + this.customer.id_customer);
+      }else
+        alert(response.json().resp);
     });
   }
 
@@ -127,7 +131,6 @@ export class PostProductComponent implements OnInit, AfterViewInit {
     }
     else
       this.isFree = false;
-      
   }
 
   accepted(isChecked){
