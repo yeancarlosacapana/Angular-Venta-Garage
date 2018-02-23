@@ -39,6 +39,13 @@ export class UserProfileComponent implements OnInit {
   }
 
   deleteProduct(product: any){
-    console.log(product)
+    if(!confirm("¿Está seguro de eliminar el producto?"))
+      return;
+    this.service.deleteProduct(product.id_product).subscribe(response => {
+      if(response.json().resp === true)
+        this.getProductMe(this.eCustomer.id_customer);
+      else
+        console.log("error");
+    });
   }
 }
