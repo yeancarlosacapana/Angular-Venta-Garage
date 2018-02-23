@@ -1,32 +1,41 @@
-.form-post
-    display: inline-block
-    position: relative
-    .contenedor-cargado-img
-        .col-lg-10
-            padding: 1%
-        .col-lg-2
-            padding: .3%
-        .file
-            position: absolute
-            width: 100%
-            height: 100%
-            opacity: 0
+.row
+    margin: auto
+    .form-post
+        .column-left
+            padding: 1% 5%
+            .contenedor-cargado-img
+                .contenedor-img
+                    border: 2px #ccc dashed
+                .col-lg-10
+                    padding: 1%
+                .col-lg-2
+                    padding: .3%
+                .file
+                    position: absolute
+                    width: 100%
+                    height: 100%
+                    opacity: 0
 
-        .img-principal
-            width: 100%
+                .img-principal
+                    width: 100%
 
-    .contenedor-img-segundaria
-        position: relative
-        margin: 4% 0
+            .contenedor-img-segundaria
+                position: relative
+                margin: 4% 0
 
-        .file
-            position: absolute
-            width: 100%
-            height: 100%
-            opacity: 0
-
-    .contenedor-img-segundaria:first-child
-        margin-top: 0 !important
+                .file
+                    position: absolute
+                    width: 100%
+                    height: 100%
+                    opacity: 0
+        .column-center
+             padding: 1% 5%
+        .column-right
+             padding: 1% 5%
+            
+        
+        .contenedor-img-segundaria:first-child
+            margin-top: 0 !important
 
 .targe-credit
     background: white

@@ -1,106 +1,115 @@
-<script src="https://checkout.culqi.com/v2"></script>
-<form enctype="multipart/form-data" class="form-post">
-  <div class="col-lg-4">
-          <div class="form-group contenedor-carga-categoria ">
-              <label>Seleccione Categoria</label>
-              <!-- <div class="svg svg-sucategoria"><img src="/img/subcategorias.svg" alt=""></div>
-              <div class="svg svg-indicador"><img src="/img/indicador.svg" alt=""></div> -->
-              <select name="id_category_default"  class="form-control" [(ngModel)]='addProduct.id_category_default'>
-                  <option *ngFor="let category of listarAllCategory" 
-                          [value]="category.id_category">
-                        {{category.category_lang.name}}
-                  </option>
-              </select> 
-          </div>
-          <div class="form-group">
-            <label for="">Nombre Product</label>
-            <input type="text" name="name" class="form-control" [(ngModel)]='addProduct.productLang.name'>
-          </div>
-          <div class="form-group">
-              <p>Ingrese fotos del inmueble</p>
-              <span>No incluyas logos,banners,textos promocionales,bordes ni marca de agua</span>
-              <div class="col-lg-12 contenedor-cargado-img">
-                  <div class=" contenedor-img-principal " *ngFor="let img of image" [ngClass]="{'col-lg-2':img.class === true , 'col-lg-10':img.class === false}">
-                      <input name="image-{{img.index}}" id="file-input-{{img.index}}" type="file" class="file"  (change)='uploadImage($event,img.index)' />
-                      <img src="http://placehold.it/150x150&text=zero" [ngClass]="{'small':img.class === true}" class="img-responsive img-principal" id="img-principal-{{img.index}}" >
-                  </div>
-              </div>   
-          </div>
-  </div>
-  <div class="col-lg-4">
-      <div class="form-group">
-          <label>Descripcion del Producto</label>
-          <textarea class="form-control"  rows="7" name="descripcion" id="descripcion" name="description"[(ngModel)]='addProduct.productLang.description'>
-
-          </textarea>
-      </div>
-      <div class="form-group form-inline">
-          <label for="precio">Precio</label>
-          <input type="number" name="price" id="precio" class="form-control frm-precio" [(ngModel)]='addProduct.price'>
-      </div>
-  </div>
-  <div class="col-lg-4">
-      <p>Metodo de Publicación</p>
-            <div class="form-group">
-                <div class="radio">
-                  <label><input type="radio" id="free" name="pago" value="free" [(ngModel)]='addProduct.orderGarage.method_payout' (change)="showCulqi(1)">GRATIS</label>
-                  <p><a href="#">mas información</a></p>
+<div class="row">
+    <form enctype="multipart/form-data" class="form-post form-horizontal">
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+            <div class="column-left">
+                <div class="form-group contenedor-carga-categoria">
+                    <label>Seleccione Categoria</label>
+                    <!-- <div class="svg svg-sucategoria"><img src="/img/subcategorias.svg" alt=""></div>
+                    <div class="svg svg-indicador"><img src="/img/indicador.svg" alt=""></div> -->
+                    <select name="id_category_default"  class="form-control" [(ngModel)]='addProduct.id_category_default'>
+                        <option *ngFor="let category of listarAllCategory" 
+                                [value]="category.id_category">
+                            {{category.category_lang.name}}
+                        </option>
+                    </select> 
+                </div>
+                <div class="form-group">
+                    <label for="">Nombre Product</label>
+                    <input type="text" name="name" class="form-control" [(ngModel)]='addProduct.productLang.name'>
+                </div>
+                <div class="form-group">
+                    <p>Ingrese fotos del inmueble</p>
+                    <span>No incluyas logos,banners,textos promocionales,bordes ni marca de agua</span>
+                    <div class="col-lg-12 contenedor-cargado-img">
+                        <div class="contenedor-img-principal contenedor-img" *ngFor="let img of image" [ngClass]="{'col-lg-2':img.class === true , 'col-lg-10':img.class === false}">
+                            <input name="image-{{img.index}}" id="file-input-{{img.index}}" type="file" class="file"  (change)='uploadImage($event,img.index)' />
+                            <img src="http://placehold.it/150x150&text=zero" [ngClass]="{'small':img.class === true}" class="img-responsive img-principal" id="img-principal-{{img.index}}" >
+                        </div>
+                    </div>   
                 </div>
             </div>
-            <div class="form-group">
-                <div class="radio">
-                    <label><input type="radio" id="costo" name="pago"  value="cost" [(ngModel)]='addProduct.orderGarage.method_payout' (change)="showCulqi(2)">COSTO</label>
-                    <p><a href="#">mas información</a></p>
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+            <div class="column-center">
+                <div class="form-group">
+                    <label>Descripcion del Producto</label>
+                    <textarea class="form-control"  rows="7" name="descripcion" id="descripcion" name="description"[(ngModel)]='addProduct.productLang.description'>
+            
+                    </textarea>
                 </div>
-            </div> 
-            <div class="col-lg-10 targe-credit" *ngIf="!isFree">
                 <div class="form-group form-inline">
+                    <label for="precio">Precio</label>
+                    <input type="number" name="price" id="precio" class="form-control frm-precio" [(ngModel)]='addProduct.price'>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+            <div class="column-right">
+                <p>Metodo de Publicación</p>
+                <div class="form-group">
                     <div class="radio">
-                        <label class="text-costo"><input type="radio" name="costo" id="15" class="costo" (click)="addImages(3,15)"> S/.15</label>
-                        <label class="text-costo"><input type="radio" name="costo" id="40" class="costo" (click)="addImages(6,40)"> S/.40</label>
-                        <label class="text-costo"><input type="radio" name="costo" id="70" class="costo" (click)="addImages(6,70)"> S/.70</label>
+                    <label><input type="radio" id="free" name="pago" value="free" [(ngModel)]='addProduct.orderGarage.method_payout' (change)="showCulqi(1)">GRATIS</label>
+                    <p><a href="#">mas información</a></p>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>Correo Electronico</label>
-                    <input type="text" class="form-control" data-culqi="card[email]" id="card[email]" size="50" placeholder="correo@gmail.com">
-                </div>
-                <div class="for-group">
-                    <label>Número de tarjeta</label>
-                    <input type="text" maxlength="19" class="form-control" data-culqi="card[number]" id="card[number]" placeholder="4111 1111 1111 1111" appCardNumber="true">
-                </div>
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <label>Mes</label>
-                            <input type="text" class="form-control" maxlength="2" data-culqi="card[exp_month]" id="card[exp_month]" placeholder="02" appOnlyNumber>
+                    <div class="radio">
+                        <label><input type="radio" id="costo" name="pago"  value="cost" [(ngModel)]='addProduct.orderGarage.method_payout' (change)="showCulqi(2)">COSTO</label>
+                        <p><a href="#">mas información</a></p>
+                    </div>
+                </div> 
+                <div class="col-lg-10 targe-credit" *ngIf="!isFree">
+                    <div class="form-group form-inline">
+                        <div class="radio">
+                            <label class="text-costo"><input type="radio" name="costo" id="15" class="costo" (click)="addImages(3,15)"> S/.15</label>
+                            <label class="text-costo"><input type="radio" name="costo" id="40" class="costo" (click)="addImages(6,40)"> S/.40</label>
+                            <label class="text-costo"><input type="radio" name="costo" id="70" class="costo" (click)="addImages(6,70)"> S/.70</label>
                         </div>
-                        <div class="col-lg-4">
-                            <label>Año</label>
-                            <input type="text" class="form-control" maxlength="4" data-culqi="card[exp_year]" id="card[exp_year]" placeholder="2018" appOnlyNumber>
-                        </div>
-                        <div class="col-lg-4">
+                    </div>
+                    <div class="form-group">
+                        <label>Correo Electronico</label>
+                        <input type="text" class="form-control" data-culqi="card[email]" id="card[email]" size="50" placeholder="correo@gmail.com">
+                    </div>
+                    <div class="for-group">
+                        <label>Número de tarjeta</label>
+                        <input type="text" maxlength="19" class="form-control" data-culqi="card[number]" id="card[number]" placeholder="4111 1111 1111 1111" appCardNumber="true">
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label>Mes</label>
+                                <input type="text" class="form-control" maxlength="2" data-culqi="card[exp_month]" id="card[exp_month]" placeholder="02" appOnlyNumber>
+                            </div>
+                            <div class="col-lg-4">
+                                <label>Año</label>
+                                <input type="text" class="form-control" maxlength="4" data-culqi="card[exp_year]" id="card[exp_year]" placeholder="2018" appOnlyNumber>
+                            </div>
+                            <div class="col-lg-4">
                                 <label>CVC</label>
                                 <input type="text" class="form-control" maxlength="3" data-culqi="card[cvv]" id="card[cvv]" placeholder="123" appOnlyNumber>
                             </div>
+                        </div>
+                    </div>
+                    <div *ngIf="errorCulqiMessage !== undefined"  class="alert alert-danger">
+                        <p>{{errorCulqiMessage}}</p>
+                    </div>
+                    <div *ngIf="successCulqiMessage !== undefined" class="alert alert-success">
+                        <p>{{successCulqiMessage}}</p>
                     </div>
                 </div>
-                <div *ngIf="errorCulqiMessage !== undefined"  class="alert alert-danger">
-                    <p>{{errorCulqiMessage}}</p>
+                <div class="form-group">
+                    <div class="checkbox col-lg-12">
+                            <label><input type="checkbox" name="terminos" #elemTerminos (change)="accepted(elemTerminos.checked)">Acepta nuestros <span class="terminos"> términos y condiciones</span></label>
+                    </div>
                 </div>
-                <div *ngIf="successCulqiMessage !== undefined" class="alert alert-success">
-                    <p>{{successCulqiMessage}}</p>
+                <div class="form-group" *ngIf="!isFree" >
+                    <button class="btn btn-default btn-block" (click)="realizarPago()" [disabled]='!elemTerminos.checked'>Realizar Pago</button>
                 </div>
+                <button type="button" class="form-control btn-block btn-publicar" [disabled]='(!elemTerminos.checked && isFree || !elemTerminos.checked && !isFree && !culqiPagoOk)' (click)='grabarProducto(elemTerminos.checked)'>PUBLICAR PRODUCTO</button>
             </div>
-            <div class="form-group">
-                <div class="checkbox col-lg-12">
-                        <label><input type="checkbox" name="terminos" #elemTerminos (change)="accepted(elemTerminos.checked)">Acepta nuestros <span class="terminos"> términos y condiciones</span></label>
-                </div>
-            </div>
-            <div class="form-group" *ngIf="!isFree" >
-                <button class="btn btn-default btn-block" (click)="realizarPago()" [disabled]='!elemTerminos.checked'>Realizar Pago</button>
-            </div>
-        <button type="button" class="form-control btn-block btn-publicar" [disabled]='(!elemTerminos.checked && isFree || !elemTerminos.checked && !isFree && !culqiPagoOk)' (click)='grabarProducto(elemTerminos.checked)'>PUBLICAR PRODUCTO</button>   
-  </div>
-</form>
+        </div>
+    </form>
+</div>
 
