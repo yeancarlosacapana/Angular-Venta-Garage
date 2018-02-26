@@ -51,10 +51,11 @@ $color-hover: #ffb520
             font-weight: bold
             font-size: 14px
 
-      .contenedor-product:hover
-        box-shadow: $shadow-hover
-        transition: $smoothness
-        height: 340px
+        &:hover
+          box-shadow: $shadow-hover
+          transition: $smoothness
+          height: 340px
+
 
 
 .contenedor-texto
@@ -103,8 +104,10 @@ $color-hover: #ffb520
     background : $yellow
     color: $white
     box-shadow: $shadow
-.btn:hover
-    box-shadow: $shadow-hover
+    &:hover
+      box-shadow: $shadow-hover
+    &:active
+      background: $yellow-hover
 
 .enlace-product
     color: initial
@@ -116,6 +119,7 @@ $color-hover: #ffb520
 
 .aside-filtro
   background: $white
+  padding: 10px 5%
 
 
   .filtro-salas
@@ -155,3 +159,23 @@ $color-hover: #ffb520
     color: $black-gray
     font-family: "Gotham Book"
     font-size: 14px
+
+.contenedor-ordenar
+  display: flex
+  margin-right: 0
+  label
+    color: $black-gray
+    font-family: "Gotham Medium"
+    margin: auto 0
+
+  .contenedor-dropdown
+    .form-control
+      background: $white
+      border: 1px solid $silver
+      border-radius: 14px
+      height: 36px
+      option
+        color: $black-gray
+        font-family: "Gotham Book"
+        font-size: 12px
+        text-align: center
