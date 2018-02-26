@@ -1,10 +1,11 @@
-$color_black: #000000
+
+@import "../../assets/css/variables"
 
 .row
     margin: auto
     .form-post
-        .form-control:not(.text-area-control,.btn-publicar)
-            border: 1px solid $color_black
+        .form-control:not(.text-area-control):not(.btn-publicar)
+            border: 1px solid $black-gray
             border-radius: 100px
         .column-left
             padding: 1% 8%
@@ -37,10 +38,24 @@ $color_black: #000000
         .column-center
             padding: 1% 8%
             .text-area-control
-                border: 1px solid $color_black
+                border: 1px solid $black-gray
                 resize: none
         .column-right
-             padding: 1% 8%
+            padding: 1% 8%
+            .btn-publicar
+                background-color: $yellow
+                border: none
+                box-shadow: $shadow
+                color: black
+                font-weight: bold
+                font-size: 1.2em
+                &:hover
+                    background-color: $yellow-hover
+                    box-shadow: $shadow-hover
+                    transition: $smoothness
+
+            .terminos
+                color: $yellow
             
         
         .contenedor-img-segundaria:first-child

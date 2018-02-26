@@ -28,7 +28,7 @@
         "assets/appjs/jquery-ui.js",
         "assets/appjs/price.js",
         "../node_modules/bootstrap-sass/assets/javascripts/bootstrap.js",
-        "assets/appjs/script.js"
+        "assets/appjs/app.js"
 
       ],
       "environmentSource": "environments/environment.ts",
