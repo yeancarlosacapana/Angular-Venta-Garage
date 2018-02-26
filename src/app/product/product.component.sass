@@ -69,19 +69,43 @@ $color-hover: #ffb520
     display: flex
     justify-content: center
     margin: .5em 0
+    input
+      background: $white
+      border: 1px solid $silver
+      border-radius: 14px
+      box-shadow: $shadow
+      color: $black-gray
+      font-family: "Gotham Book"
+      font-size: 14px
+      height: 28px
+      text-align: center
+      margin: 10px 0
+
+    span
+      margin: auto
+      color: $black-gray
+
+
 
     .txt-filtrar
-        width: 100%
-        max-width: 40%
+          width: 100%
+          max-width: 40%
+
 .pagination
     background: $white
     color: $black-gray
     display: flex
     justify-content: space-between
 
+
+
 .btn
     background : $yellow
     color: $white
+    box-shadow: $shadow
+.btn:hover
+    box-shadow: $shadow-hover
+
 .enlace-product
     color: initial
     text-decoration: none
@@ -92,6 +116,7 @@ $color-hover: #ffb520
 
 .aside-filtro
   background: $white
+
 
   .filtro-salas
     h4
@@ -113,6 +138,7 @@ $color-hover: #ffb520
       color: $black-gray
       font-family: "Gotham Medium"
       font-size: 15px
+      margin-top: 20px
 
     h6
       color: $black-gray
