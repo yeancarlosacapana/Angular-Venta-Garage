@@ -1,11 +1,17 @@
+$color_black: #000000
+
 .row
     margin: auto
     .form-post
+        .form-control:not(.text-area-control,.btn-publicar)
+            border: 1px solid $color_black
+            border-radius: 100px
         .column-left
-            padding: 1% 5%
+            padding: 1% 8%
+            .control-category
+                width: 70%
             .contenedor-cargado-img
                 .contenedor-img
-                    border: 2px #ccc dashed
                 .col-lg-10
                     padding: 1%
                 .col-lg-2
@@ -29,9 +35,12 @@
                     height: 100%
                     opacity: 0
         .column-center
-             padding: 1% 5%
+            padding: 1% 8%
+            .text-area-control
+                border: 1px solid $color_black
+                resize: none
         .column-right
-             padding: 1% 5%
+             padding: 1% 8%
             
         
         .contenedor-img-segundaria:first-child

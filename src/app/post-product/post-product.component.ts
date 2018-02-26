@@ -33,6 +33,8 @@ export class PostProductComponent implements OnInit, AfterViewInit {
   private successCulqiMessage: string;
   private culqiPagoOk = false;
   private costImage = 0;
+  private imageUrlBig = "assets/img/garage-img-big.png";
+  private imageUrlSmall = "assets/img/garage-img-small.png";
 
   constructor(private AppService: ServicioService, private router: Router, private route: ActivatedRoute) { }
 
@@ -53,7 +55,7 @@ export class PostProductComponent implements OnInit, AfterViewInit {
       this.listarAllCategory = rest.json();
       // console.log(this.listarAllCategory);
     });
-    this.image.push({index: 0, class: false});
+    this.image.push({index: 0, class: false, imgUrl: this.imageUrlBig});
   }
 
   ngAfterViewInit(): void {
@@ -127,7 +129,7 @@ export class PostProductComponent implements OnInit, AfterViewInit {
     if (valuePago === 1 ){
       this.isFree = true;
       this.image = [];
-      this.image.push({index: 0, class: false});
+      this.image.push({index: 0, class: false,  imgUrl: this.imageUrlBig});
     }
     else
       this.isFree = false;
@@ -153,9 +155,9 @@ export class PostProductComponent implements OnInit, AfterViewInit {
     this.image = [];
     for(let i = 0 ;i <= photoNumber - 1 ;i++){
       if(i === 0){
-        this.image.push({index: i, class: false});
+        this.image.push({index: i, class: false,  imgUrl: this.imageUrlBig});
       }else{
-        this.image.push({index: i, class: true});
+        this.image.push({index: i, class: true,  imgUrl: this.imageUrlSmall});
       }
     }
   }

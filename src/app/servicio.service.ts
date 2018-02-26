@@ -51,7 +51,7 @@ export class ServicioService {
     return this.http.post(this.Url+'product',oProduct);
   }
   public deleteProduct (id_product: number){
-    return this.http.delete(this.Url + "/"+ id_product);
+    return this.http.delete(this.Url + "product/"+ id_product);
   }
   public getState(){
     return this.http.get(this.Url+'state');
