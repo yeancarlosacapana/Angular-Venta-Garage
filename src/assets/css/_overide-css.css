@@ -1,0 +1,30 @@
+.ui-widget.ui-widget-content{
+  background: #ccc;
+  border: 1px solid #c5c5c5;
+  height: 4px;
+}
+
+.ui-slider-horizontal .ui-slider-range{
+  top: 0;
+  height: 100%;
+}
+
+.ui-slider .ui-slider-range{
+  background: #ffd015;
+  position: absolute;
+  z-index: 1;
+  font-size: .7em;
+  display: block;
+  border: 0;
+  background-position: 0 0;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default{
+  background: #ffd015;
+  border-radius: 100%;
+}
+
+.ui-slider-horizontal .ui-slider-handle{
+  top: -0.5em;
+  margin-left: -.6em;
+}

@@ -7,12 +7,13 @@ import {ServicioService} from '../servicio.service';
   providers:[ServicioService]
 })
 export class CategoriaComponent implements OnInit {
-  public listaCategoria:any[] = [];
-  constructor(private AppService:ServicioService) { }
+  public listaCategoria: any[] = [];
+  constructor(private AppService: ServicioService) { }
 
   ngOnInit() {
-    this.AppService.getCategory().subscribe(rest=>{
+    this.AppService.getCategory().subscribe(rest => {
       this.listaCategoria = rest.json();
+      console.log(this.listaCategoria);
     });
   }
 

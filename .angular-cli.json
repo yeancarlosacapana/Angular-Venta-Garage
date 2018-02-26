@@ -19,7 +19,9 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.sass"
+        "assets/css/jquery-ui.css",
+        "styles.sass",
+        "assets/css/_overide-css.css"
       ],
       "scripts": [
         "assets/appjs/jquery-2.2.4.js",
@@ -27,7 +29,7 @@
         "assets/appjs/price.js",
         "../node_modules/bootstrap-sass/assets/javascripts/bootstrap.js",
         "assets/appjs/script.js"
-        
+
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

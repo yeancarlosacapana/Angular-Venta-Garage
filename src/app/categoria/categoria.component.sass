@@ -8,11 +8,12 @@ $color: #3a2b01
 .categorias
   display: flex
   flex-wrap: wrap
-  padding: 2% 0
+  padding: 1% 0
 
 .portfolio-item
   height: 320px
-  margin: 10px 0
+  margin: 8px 0
+  padding: 0 8px
 
   @media screen and (max-width: $lg)
     height: 290px
@@ -54,8 +55,9 @@ $color: #3a2b01
   border-top-left-radius: 10px
   border-bottom-right-radius: 10px
 
+
   div
-    font-family: "Gotham Bold"
+    font-family: "Gotham Book"
 
 .caption:hover
   opacity: 1
@@ -83,6 +85,9 @@ $color: #3a2b01
   display: flex
   align-items: center
   justify-content: center
+  @media screen and (max-width: $xs)
+    font-size: .7em
+    transition: $smoothness
 
 
 .caption-content:hover
@@ -90,4 +95,7 @@ $color: #3a2b01
   color: #FFD015
   transition: $smoothness
   margin: auto
+  @media screen and (max-width: $xs)
+    font-size: 1em
+    transition: $smoothness
 

@@ -1,5 +1,4 @@
 <!-- {{listarProduct.per_page}}  -->
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <div class="container">
           <!-- <div class="col-lg-12">
               <ol class="contenedor-etiqueta">
@@ -7,18 +6,21 @@
                   <a href="#" class="enlace-etiqueta"><li class="etiqueta">Venta de Gerage</li></a>
               </ol>
           </div> -->
-          <div class="col-lg-3">
+          <div class="col-lg-3 aside-filtro">
               <div class="filtro-salas">
-                  <h4 class="font-weight-bold">{{categoryName | uppercase}}</h4>
-                  <ul>
-                    <li *ngFor="let subcategory of getSubCategory">
-                        <a [routerLink]="['/category-product','cat',subcategory.id_category]">{{subcategory.name}}</a>
-                    </li>
-                  </ul>
+                <i class="fal fa-scrubber"></i>
+                <h4 class="font-weight-bold">{{categoryName | uppercase}}</h4>
+                <ul>
+                  <li *ngFor="let subcategory of getSubCategory">
+                      <a [routerLink]="['/category-product','cat',subcategory.id_category]">{{subcategory.name}}</a>
+                  </li>
+                </ul>
               </div>
               <div class="filtros">
+
                   <h5>
-                      <i class="fa fa-filter fa-4"></i>
+                      <i class="fas fa-sliders-h"></i>
+                      <span class="icon-filtro"></span>
                           FILTROS
                   </h5>
                   <h6>Precio</h6>

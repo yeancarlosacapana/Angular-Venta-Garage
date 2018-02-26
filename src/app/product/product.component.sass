@@ -74,8 +74,10 @@ $color-hover: #ffb520
         width: 100%
         max-width: 40%
 .pagination
+    background: $white
+    color: $black-gray
     display: flex
-    justify-content: flex-end
+    justify-content: space-between
 
 .btn
     background : $yellow
@@ -84,3 +86,46 @@ $color-hover: #ffb520
     color: initial
     text-decoration: none
     display: inline-block
+
+
+//codigo para los filtros de categoria
+
+.aside-filtro
+  background: $white
+
+  .filtro-salas
+    h4
+      color: $black-gray
+      font-family: "Gotham Medium"
+      font-size: 15px
+    ul
+      padding-left: 4%
+      li
+        list-style: none
+        a
+          color: $black-gray
+          font-family: "Gotham Book"
+          font-size: 14px
+
+
+  .filtros
+    h5
+      color: $black-gray
+      font-family: "Gotham Medium"
+      font-size: 15px
+
+    h6
+      color: $black-gray
+      font-family: "Gotham Medium"
+      font-size: 14px
+
+
+  .fecha-post h6
+    color: $black-gray
+    font-family: "Gotham Medium"
+    font-size: 14px
+
+  .checkbox
+    color: $black-gray
+    font-family: "Gotham Book"
+    font-size: 14px

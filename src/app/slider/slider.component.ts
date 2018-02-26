@@ -15,7 +15,7 @@ export class SliderComponent implements OnInit {
     this.AppService.getSlider().subscribe(rest=>{
       //console.log('ejecutando');
       this.listarSlider = rest.json();
-      //console.log(this.listarSlider);
+      console.log(this.listarSlider);
     });
   }
 
