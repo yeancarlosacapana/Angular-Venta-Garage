@@ -1,7 +1,7 @@
 .ui-widget.ui-widget-content{
   background: #ccc;
-  border: 1px solid #c5c5c5;
   height: 4px;
+  border: none;
 }
 
 .ui-slider-horizontal .ui-slider-range{
@@ -20,6 +20,7 @@
 }
 
 .ui-state-default, .ui-widget-content .ui-state-default{
+  border: 1px solid #ffd015;
   background: #ffd015;
   border-radius: 100%;
 }
