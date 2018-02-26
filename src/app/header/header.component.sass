@@ -58,7 +58,16 @@ $shadow: 2px 2px 2px 0px rgba(0,0,0,.16)
   display: flex
   align-items: center
   justify-content: space-between
-
+  .text-register-or-login
+    text-align: center
+    .user-name
+      color: $black
+    .user-email
+      color: $black-gray
+      display: block
+      font-size: .7em
+  .icon-user
+    margin-right: 40%
   .icon-user:before
     background-image: url(../../assets/img/registrarse.svg)
     content: ""
@@ -68,6 +77,14 @@ $shadow: 2px 2px 2px 0px rgba(0,0,0,.16)
     display: inline-block
     background-size: 28px 28px
     background-position: 8px 7px
+  .dropdown
+    margin-right: 10%
+    &>.btn
+      border: none
+      padding: 0
+    .dropdown-menu
+      left: auto
+      right: 0
 
 
 

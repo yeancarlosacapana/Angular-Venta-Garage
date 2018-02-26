@@ -1,30 +1,40 @@
 <header class="header">
   <div class="row">
       <!-- <div class="container"> -->
-    <div class="contenedor-logos col-lg-6 col-md-5 col-sm-4 col-xs-6">
-      <div class="logo col-lg-8 col-xs-8">
-        <a [routerLink]="['/']"><img src="assets/img/logo.svg" class="img-logo img-responsive"></a>
-      </div>
-
-      <div class="sub-logo col-lg-4 col-xs-4 ">
-        <img src="assets/img/garage.svg" class="img-logo img-responsive">
+    <div class="contenedor-logos col-xs-2 col-sm-2 col-md-2 col-lg-2">
+      <div class="logo">
+        <a [routerLink]="['/']"><img src="assets/img/logo.svg" class="img-logo img-responsive hidden-xs"></a>
+        <a [routerLink]="['/']"><img src="assets/img/home.svg" class="img-logo img-responsive visible-xs"></a>
       </div>
     </div>
-    <div class="busqueda col-lg-4 col-md-4 col-sm-4 col-xs-2">
+
+    <div class="sub-logo col-xs-2 col-sm-2 col-md-2 col-lg-2">
+      <img src="assets/img/garage.svg" class="img-logo img-responsive">
+    </div>
+
+    <div class="busqueda  col-xs-6 col-sm-6 col-md-6 col-lg-6">
       <app-search></app-search>
     </div>
 
-    <div class="registro-login col-lg-2 col-md-3 col-sm-4 col-xs-4">
-      <a href="" *ngIf="!customer.is_logged" class="registrate" data-toggle="modal" data-target="#registrar">Registrate</a>
-      <a [routerLink]="['/user-profile/',customer.id_customer]"  *ngIf="customer.is_logged"> {{customer.firstname}}</a>
-      <button type="button" class="btn btn-default ingresa btn-sm" *ngIf="!customer.is_logged" data-toggle="modal" data-target="#login">
-        Inicia Sesion
-      </button>
-      <a [routerLink]="['/postproduct/:id_customer']" class="display:none;"></a>
-      <div class="icon-user"></div>
-      <button type="button" *ngIf="customer.is_logged" (click)="logout()" class="btn btn-default btn-sm">
-        Cerrar Sesion
-      </button>
+    <div class="registro-login col-xs-2 col-sm-2 col-md-2 col-lg-2">
+      <div class="text-register-or-login">
+        <a href="javascript:void(0)" *ngIf="!customer.is_logged" class="registrate" data-toggle="modal" data-target="#registrar">Registrate</a> <span *ngIf="!customer.is_logged">o</span> 
+        <a href="javascript:void(0)" *ngIf="!customer.is_logged" data-toggle="modal" data-target="#login">Ingresa</a>
+  
+        <a [routerLink]="['/user-profile/',customer.id_customer]"  *ngIf="customer.is_logged" class="user-name hidden-xs"> {{customer.firstname}}</a>
+        <a href="{{customer.email}}" class="user-email  hidden-xs"> {{customer.email}}</a>
+      </div>
+      <div class="icon-user" *ngIf="!customer.is_logged"></div>
+      <div class="dropdown" *ngIf="customer.is_logged">
+        <!--<div class="icon-user"></div>-->
+        <button class="btn btn-default dropdown-toggle icon-user" type="button" data-toggle="dropdown">
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li><a [routerLink]="['user-profile/',customer.id_customer]">Perfil</a></li>
+          <li><a href="javascript:void(0)" (click)="logout()">Logout</a></li>
+        </ul>
+      </div>
     </div>
   </div>
 </header>
