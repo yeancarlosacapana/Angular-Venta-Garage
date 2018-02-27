@@ -19,6 +19,9 @@ $color-hover: #ffb520
         box-shadow: $shadow
         height: 300px
         width: 100%
+        @media screen and (max-width: $xs)
+          height: 200px
+          width: 140px
 
 
 
@@ -26,6 +29,10 @@ $color-hover: #ffb520
           height: 235px
           padding: 4%
           width: 235px
+          @media screen and (max-width: $xs)
+            height: 135px
+            padding: 4%
+            width: 100%
 
           .img-productos
             height: 100%
@@ -36,8 +43,8 @@ $color-hover: #ffb520
           align-items: center
           display: flex
           justify-content: space-between
-          margin-bottom: 0
           padding: 0 1em
+          position: relative
 
 
           .price
@@ -46,24 +53,37 @@ $color-hover: #ffb520
             font-size: 15pt
             text-align: left
 
+            @media screen and (max-width: $xs)
+              font-size: 12pt
+              padding-top: 4%
+
           .condicion
             color: $black-gray
             font-weight: bold
             font-size: 14px
 
+            @media screen and (max-width: $xs)
+              font-size: 10px
+              padding-top: 4%
+
         &:hover
           box-shadow: $shadow-hover
           transition: $smoothness
           height: 340px
+          @media screen and (max-width: $xs)
+            height: 200px
 
 
 
 .contenedor-texto
+  height: 34px
   color: $black-gray
   font-family: "Gotham Book"
   margin: auto
   font-size: 13px
   padding: 0 4%
+  @media screen and (max-width: $xs)
+    font-size: 10px
 
 
 .contenedor-precio
