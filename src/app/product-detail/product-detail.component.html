@@ -53,8 +53,8 @@
 </div>
 
 <div *ngIf="supplierContactInfo" class="customer-information">
-    <span>{{eCustomer.firstname +' '+ eCustomer.lastname}}</span>
+    <span class="name">{{eCustomer.firstname +' '+ eCustomer.lastname}}</span>
     <strong>
-        <a href="tel:{{eCustomer.phone_mobile}}"> {{eCustomer.phone_mobile}}</a>
+        <a href="tel:{{eCustomer.phone_mobile}}"><span class="glyphicon glyphicon-earphone"></span> {{eCustomer.phone_mobile}}</a>
     </strong>
 </div>
