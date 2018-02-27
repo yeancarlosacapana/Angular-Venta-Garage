@@ -31,6 +31,7 @@
         <th class="description">{{product.pasarella}}</th>
         <td class="description">Activo</td>
         <td class="description">
+          <a class="btn btn-success" [routerLink]="['/detail-product','id',product.id_product]">Ver Post</a>
           <a class="btn btn-info" (click)="editProduct(product)">Editar</a>
           <a class="btn btn-danger" (click)="deleteProduct(product)">Eliminar</a>
         </td>
