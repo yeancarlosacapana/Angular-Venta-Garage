@@ -28,7 +28,10 @@ export class ProductComponent implements OnInit, AfterViewInit {
       slide: function( event, ui ) {
         $("#amount").val(ui.values[0]);
         $("#amount1").val(ui.values[1]);
-       
+      },
+      draggable:  function( event, ui ) {
+        $("#amount").val(ui.values[0]);
+        $("#amount1").val(ui.values[1]);
       }
     });
   }
