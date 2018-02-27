@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import {RouterModule} from '@angular/router';
 import {AppRouteModule} from './app.route.module';
+import {HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 import {SocialLoginModule,AuthServiceConfig} from 'angular4-social-login';
 import {GoogleLoginProvider,FacebookLoginProvider} from 'angular4-social-login';
@@ -60,7 +61,10 @@ let config = new AuthServiceConfig([
     NgxPaginationModule,
     SocialLoginModule.initialize(config)
   ],
-  providers: [],
+  providers: [{
+    provide: LocationStrategy,
+    useClass: HashLocationStrategy
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { } 
