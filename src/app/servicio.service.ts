@@ -9,7 +9,7 @@ import { CustomerProduct } from './clases/customer-product';
 @Injectable()
 export class ServicioService {
   // creando variable
-  // private Url = 'http://127.0.0.1:8000/api/';
+  //private Url = 'http://127.0.0.1:8000/api/';
 
   private Url:string = "http://apigarage.hogaryspacios.com/api/";
 

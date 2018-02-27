@@ -194,6 +194,13 @@ export class PostProductComponent implements OnInit, AfterViewInit {
       this.addProduct.productLang.description = product.description;
       this.addProduct.orderGarage = new OrderGarage();
       this.addProduct.orderGarage.method_payout = product.method_payout;
+      this.image = [];
+      for(let index in this.addProduct.imgData){
+        if(parseInt(index) === 0)
+          this.image.push({index: index, class: false, imgUrl: this.addProduct.imgData[index]});
+        else
+          this.image.push({index: index, class: true, imgUrl: this.addProduct.imgData[index]});
+      }
       console.log(response.json());
     });
   }
