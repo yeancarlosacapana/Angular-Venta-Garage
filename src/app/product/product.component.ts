@@ -23,13 +23,14 @@ export class ProductComponent implements OnInit, AfterViewInit {
     $("#slider-range" ).slider({
       range: true,
       min: 0,
-      max: 5000,
+      max: 50000,
       values: [ parseInt(iPrecio1), parseInt(iPrecio2) ],
       slide: function( event, ui ) {
         $("#amount").val(ui.values[0]);
         $("#amount1").val(ui.values[1]);
       },
       change:  function( event, ui ) {
+        console.log(ui);
         $("#amount").val(ui.values[0]);
         $("#amount1").val(ui.values[1]);
       }

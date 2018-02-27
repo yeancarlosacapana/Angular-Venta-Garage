@@ -90,9 +90,6 @@ export class HeaderComponent implements OnInit {
   signInWithFB():void{
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
   }
-  signOut():void{
-    this.authService.signOut();
-  }
 
   signCustomer(email,passwd,login_media):void{
     this.customer.email = email;
@@ -114,7 +111,9 @@ export class HeaderComponent implements OnInit {
 
   logout(){
     localStorage.removeItem('user');
+    this.authService.signOut();
     this.customer = new Customer();
+    this.router.navigateByUrl("/");
   }
   getAllState(){
     this.appService.getState().subscribe(rest=>{
