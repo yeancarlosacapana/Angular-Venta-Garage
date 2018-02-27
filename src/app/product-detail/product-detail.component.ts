@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {ServicioService} from '../servicio.service';
+import { Customer } from '../clases/customer';
 
 
 // Declaramos las variables para jQuery
@@ -14,6 +15,9 @@ declare var $:any;
   providers:[ServicioService]
 })
 export class ProductDetailComponent implements OnInit,AfterViewInit {
+
+  public supplierContactInfo = false;
+  public eCustomer = new Customer();
 
   ngAfterViewInit(): void {
     jQuery(document).ready(function($) {
@@ -36,6 +40,7 @@ export class ProductDetailComponent implements OnInit,AfterViewInit {
     this.AppService.getProductById(id_product).subscribe(rest=>{
       
       this.detailProduct= rest.json();
+      this.eCustomer = <Customer>this.detailProduct["customer"];
       console.log(this.detailProduct);
     });
   }
@@ -52,5 +57,8 @@ export class ProductDetailComponent implements OnInit,AfterViewInit {
       var id = $('.item.active').data('slide-number');
         $('#carousel-text').html($('#slide-content-'+id).html());
     });
+  }
+  contactSupplier(isVisible: boolean){
+    this.supplierContactInfo = (this.supplierContactInfo != isVisible);
   }
 }
