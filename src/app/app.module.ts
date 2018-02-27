@@ -24,6 +24,7 @@ import { PostProductComponent } from './post-product/post-product.component';
 import { OnlyNumberDirective } from './library/only-number.directive';
 import { CardNumberDirective } from './library/card-number.directive';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { TermAndConditionComponent } from './term-and-condition/term-and-condition.component';
 
 let config = new AuthServiceConfig([
   {
@@ -51,7 +52,8 @@ let config = new AuthServiceConfig([
     PostProductComponent,
     OnlyNumberDirective,
     CardNumberDirective,
-    UserProfileComponent
+    UserProfileComponent,
+    TermAndConditionComponent
   ],
   imports: [
     BrowserModule,

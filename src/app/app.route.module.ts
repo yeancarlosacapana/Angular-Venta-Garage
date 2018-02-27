@@ -6,6 +6,7 @@ import { SearchComponent } from './search/search.component';
 import {ProductDetailComponent} from './product-detail/product-detail.component'
 import { PostProductComponent } from './post-product/post-product.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { TermAndConditionComponent } from './term-and-condition/term-and-condition.component';
 
 
 const routes: Routes = [
@@ -29,6 +30,10 @@ const routes: Routes = [
     {
         path: 'user-profile/:id_customer',
         component: UserProfileComponent
+    },
+    {
+        path: 'term-and-condition',
+        component: TermAndConditionComponent
     },
     { path: '**', redirectTo: 'not-found' }
 ];
