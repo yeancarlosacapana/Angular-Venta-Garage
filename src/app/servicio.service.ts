@@ -9,7 +9,7 @@ import { CustomerProduct } from './clases/customer-product';
 @Injectable()
 export class ServicioService {
   // creando variable
-  //private Url = 'http://127.0.0.1:8000/api/';
+  // private Url = 'http://127.0.0.1:8000/api/';
 
   private Url:string = "http://apigarage.hogaryspacios.com/api/";
 
@@ -49,6 +49,9 @@ export class ServicioService {
   }
   public postProduct(oProduct){
     return this.http.post(this.Url+'product',oProduct);
+  }
+  public putProduct(oProduct: any){
+    return this.http.put(this.Url+ 'product/' + oProduct.id_product,oProduct);
   }
   public deleteProduct (id_product: number){
     return this.http.delete(this.Url + "product/"+ id_product);

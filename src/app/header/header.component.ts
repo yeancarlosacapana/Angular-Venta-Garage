@@ -97,9 +97,9 @@ export class HeaderComponent implements OnInit {
     this.customer.login_media = login_media;
     this.appService.loginCustomer(this.customer).subscribe(rest=>{
       if(Object.keys(rest.json()).length ===0){
+        this.customer = new Customer();
         alert("Usuario y/o contraseña incorrecto");
       }else{
-        console.log(this.customer); 
         this.customer = rest.json();
         this.customer.address = this.address;
         localStorage.setItem('user',JSON.stringify(rest.json()));

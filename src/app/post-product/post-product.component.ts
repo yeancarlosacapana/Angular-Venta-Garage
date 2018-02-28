@@ -21,13 +21,16 @@ declare var Culqi: any;
   providers: [ServicioService]
 })
 export class PostProductComponent implements OnInit, AfterViewInit {
+
   public listarAllCategory: any[] = [];
   public productLang = ProductLang;
   public oCustomerProduct = new CustomerProduct();
   public customer = new Customer();
   public addProduct = new AddProduct();
+  public eImage = new Image();
+
   public isFree = true;
-  public image: any[] = [];
+  public listImage: Image[] = [];
   private urlPost: string;
   private errorCulqiMessage: string;
   private successCulqiMessage: string;
@@ -55,7 +58,9 @@ export class PostProductComponent implements OnInit, AfterViewInit {
       this.listarAllCategory = rest.json();
       // console.log(this.listarAllCategory);
     });
-    this.image.push({index: 0, class: false, imgUrl: this.imageUrlBig});
+    this.eImage.class = false;
+    this.eImage.image = this.imageUrlBig;
+    this.listImage.push(this.eImage);
   }
 
   ngAfterViewInit(): void {
@@ -68,11 +73,10 @@ export class PostProductComponent implements OnInit, AfterViewInit {
     this.successCulqiMessage = undefined;
     Culqi.createToken();
     const interval = setInterval(() => {
-      data_culqi = window['data_culqi']; // Referencia de metodo culqi en index.html
+      data_culqi = window['data_culqi']; // se obtiene  desde la Referencia de metodo culqi en index.html
       if (data_culqi !== undefined && data_culqi !== '' && data_culqi !== null) {
         clearInterval(interval);
         window['data_culqi'] = undefined;
-        console.log(data_culqi);
         if (data_culqi.error !== null && data_culqi.error !== undefined) {
           this.errorCulqiMessage = data_culqi.error.user_message;
         }else {
@@ -99,9 +103,11 @@ export class PostProductComponent implements OnInit, AfterViewInit {
       alert('Acepte los terminos y condiciones');
       return;
     }
-    this.addProduct.imgData = [];
-    for (let i in this.image) {
-      this.addProduct.imgData.push((document.getElementById('img-principal-' + this.image[i].index) as HTMLImageElement).src)
+    this.addProduct.image = [];
+    for (let i in this.listImage) {
+      const controlImage = (document.getElementById('img-principal-' + this.listImage[i].id_image) as HTMLImageElement);
+      const image = this.getImage(parseInt(controlImage.alt),false,controlImage.src);
+      this.addProduct.image.push(image);
     }
 
     if (!this.formValidate(this.addProduct)){
@@ -116,20 +122,29 @@ export class PostProductComponent implements OnInit, AfterViewInit {
     this.addProduct.customerProduct.id_customer = this.customer.id_customer;
     this.addProduct.orderGarage.pasarella = this.isFree?'Free':'Culqi';
     this.addProduct.orderGarage.total = this.costImage;
-    this.AppService.postProduct(this.addProduct).subscribe(response => {
-      console.log(response.json());
-      if(Object.keys(response.json()).length > 0){
-        this.router.navigateByUrl("/user-profile/" + this.customer.id_customer);
-      }else
-        alert(response.json().resp);
-    });
+    if(this.addProduct.id_product == 0){
+      this.AppService.postProduct(this.addProduct).subscribe(response => {
+        this.validateRedirectSaveAndUpdProduct(response)
+      });
+    }else{
+      this.AppService.putProduct(this.addProduct).subscribe(response => {
+        this.validateRedirectSaveAndUpdProduct(response);
+      });
+    }
   }
 
+  validateRedirectSaveAndUpdProduct(response: any): void {
+    if(Object.keys(response.json()).length > 0){
+      this.router.navigateByUrl("/user-profile/" + this.customer.id_customer);
+    }else
+      alert(response.json().resp);
+  }
   showCulqi(valuePago){
     if (valuePago === 1 ){
       this.isFree = true;
-      this.image = [];
-      this.image.push({index: 0, class: false,  imgUrl: this.imageUrlBig});
+      this.listImage = [];
+      const oImage = this.getImage(0,false,this.imageUrlBig);
+      this.listImage.push(oImage);
     }
     else
       this.isFree = false;
@@ -152,12 +167,14 @@ export class PostProductComponent implements OnInit, AfterViewInit {
 
   addImages(photoNumber: number, costImage: number){
     this.costImage = costImage;
-    this.image = [];
+    this.listImage = [];
     for(let i = 0 ;i <= photoNumber - 1 ;i++){
       if(i === 0){
-        this.image.push({index: i, class: false,  imgUrl: this.imageUrlBig});
+        const oImage = this.getImage(i,false,this.imageUrlBig);
+        this.listImage.push(oImage);
       }else{
-        this.image.push({index: i, class: true,  imgUrl: this.imageUrlSmall});
+        const oImage = this.getImage(i,true,this.imageUrlSmall);
+        this.listImage.push(oImage);
       }
     }
   }
@@ -176,7 +193,7 @@ export class PostProductComponent implements OnInit, AfterViewInit {
     }else if(product.price === 0){
       alert("Ingresa el precio del producto");
       response = false;
-    }else if(product.imgData.length === 0){
+    }else if(product.image.length === 0){
       alert(this.isFree?"Selecciona una imagen":"Selecciona uno o mas imagenes");
       response = false;
     }
@@ -192,16 +209,28 @@ export class PostProductComponent implements OnInit, AfterViewInit {
       this.addProduct.productLang = new ProductLang();
       this.addProduct.productLang.name = product.name;
       this.addProduct.productLang.description = product.description;
+      this.addProduct.customerProduct = new CustomerProduct();
+      this.addProduct.customerProduct.id_customer = id_customer;
+      this.addProduct.customerProduct.id_product = id_product;
       this.addProduct.orderGarage = new OrderGarage();
       this.addProduct.orderGarage.method_payout = product.method_payout;
-      this.image = [];
-      for(let index in this.addProduct.imgData){
-        if(parseInt(index) === 0)
-          this.image.push({index: index, class: false, imgUrl: this.addProduct.imgData[index]});
-        else
-          this.image.push({index: index, class: true, imgUrl: this.addProduct.imgData[index]});
+      this.listImage = [];
+      for(let index in this.addProduct.image){
+        if(parseInt(index) === 0){
+          const image = this.getImage(this.addProduct.image[index].id_image,false,this.addProduct.image[index].image);
+          this.listImage.push(image);
+        }else{
+          const image = this.getImage(this.addProduct.image[index].id_image,true,this.addProduct.image[index].image);
+          this.listImage.push(image);
+        }
       }
-      console.log(response.json());
     });
+  }
+  private getImage(id_image: number, className: boolean, image: string): Image{
+    this.eImage = new Image();
+    this.eImage.id_image = id_image;
+    this.eImage.image = image;
+    this.eImage.class = className;
+    return this.eImage;
   }
 }
