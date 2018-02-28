@@ -21,9 +21,9 @@
                     <p><strong>Ingrese fotos del inmueble</strong></p>
                     <p>No incluyas logos, banners, textos promocionales, bordes ni marcas de agua</p>
                     <div class="col-lg-12 contenedor-cargado-img">
-                        <div class="contenedor-img-principal contenedor-img" *ngFor="let img of image" [ngClass]="{'col-lg-2':img.class === true , 'col-lg-10':img.class === false}">
-                            <input name="image-{{img.index}}" id="file-input-{{img.index}}" type="file" class="file"  (change)='uploadImage($event,img.index)' />
-                            <img [src]="img.imgUrl" [ngClass]="{'small':img.class === true}" class="img-responsive img-principal" id="img-principal-{{img.index}}" >
+                        <div class="contenedor-img-principal contenedor-img" *ngFor="let image of listImage" [ngClass]="{'col-lg-2':image.class === true , 'col-lg-10':image.class === false}">
+                            <input name="image-{{image.id_image}}" id="file-input-{{image.id_image}}" type="file" class="file"  (change)='uploadImage($event,image.id_image)' />
+                            <img [src]="image.image" [ngClass]="{'small':image.class === true}" class="img-responsive img-principal" id="img-principal-{{image.id_image}}" alt="{{image.id_image}}">
                         </div>
                     </div>   
                 </div>
@@ -34,7 +34,7 @@
             <div class="column-center">
                 <div class="form-group">
                     <label>Descripcion del Producto</label>
-                    <textarea class="form-control text-area-control"  rows="7" name="descripcion" id="descripcion" name="description"[(ngModel)]='addProduct.productLang.description'>
+                    <textarea class="form-control text-area-control"  rows="10" name="descripcion" id="descripcion" name="description"[(ngModel)]='addProduct.productLang.description'>
             
                     </textarea>
                 </div>
@@ -103,13 +103,14 @@
                 </div>
                 <div class="form-group">
                     <div class="checkbox col-lg-12">
-                        <label><input type="checkbox" name="terminos" #elemTerminos (change)="accepted(elemTerminos.checked)">Acepta nuestros <span class="terminos"> términos y condiciones</span></label>
+                        <label><input type="checkbox" [checked]="addProduct.id_product > 0" name="terminos" #elemTerminos (change)="accepted(elemTerminos.checked)">Acepta nuestros <span class="terminos"> términos y condiciones</span></label>
                     </div>
                 </div>
                 <div class="form-group" *ngIf="!isFree" >
-                    <button class="btn btn-default btn-block" (click)="realizarPago()" [disabled]='!elemTerminos.checked'>Realizar Pago</button>
+                    <button class="btn btn-default btn-block" (click)="realizarPago()" [disabled]='!elemTerminos.checked || culqiPagoOk'>Realizar Pago</button>
                 </div>
-                <button type="button" class="form-control btn-block btn-publicar" [disabled]='(!elemTerminos.checked && isFree || !elemTerminos.checked && !isFree && !culqiPagoOk)' (click)='grabarProducto(elemTerminos.checked)'>PUBLICAR PRODUCTO</button>
+                <button *ngIf="addProduct.id_product === 0" type="button" class="form-control btn-block btn-publicar" [disabled]='(!elemTerminos.checked && isFree || !elemTerminos.checked && !isFree && !culqiPagoOk)' (click)='grabarProducto(elemTerminos.checked)'>PUBLICAR PRODUCTO</button>
+                <button *ngIf="addProduct.id_product > 0" type="button" class="form-control btn-block btn-publicar" (click)='grabarProducto(true)'>ACTUALIZAR PRODUCTO</button>
             </div>
         </div>
     </form>

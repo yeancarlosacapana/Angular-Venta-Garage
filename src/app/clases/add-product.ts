@@ -11,15 +11,13 @@ export class AddProduct {
     public date_add: Date;
     public date_upd: Date;
     public productLang: ProductLang;
-    public image: Image;
-    public imgData: string[];
+    public image: Image[];
     public customerProduct: CustomerProduct;
     public orderGarage: OrderGarage;
     constructor() {
         this.productLang = new ProductLang();
-        this.image = new Image();
+        this.image = [];
         this.orderGarage = new OrderGarage();
-        this.imgData = [];
         this.customerProduct = new CustomerProduct();
         this.price = 0;
         this.id_product = 0;
