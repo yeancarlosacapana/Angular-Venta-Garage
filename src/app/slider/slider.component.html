@@ -2,9 +2,20 @@
   <div class="slider col-lg-12">
     <div id="myCarousel" class="primary carousel slide" data-ride="carousel">
       <!-- Wrapper for slides -->
+      <!--
       <div class="carousel-inner">
         <div *ngFor="let slider of listarSlider;let i = index;" class="contenedor-imagen item" [ngClass]="{'active':i === 0,'':i>0}">
           <img src="{{slider.url}}" class="img-responsive "/>
+      <!-- </div> -->
+      <div class="carousel-inner">
+        <div  class="contenedor-imagen item active">
+          <img src="../../assets/img/SLIDER1.png" class="img-responsive "/>
+        </div>
+        <div  class="contenedor-imagen item">
+          <img src="../../assets/img/SLIDER2.png" class="img-responsive "/>
+        </div>
+        <div  class="contenedor-imagen item">
+          <img src="../../assets/img/SLIDER3.png" class="img-responsive "/>
         </div>
       </div>
 
