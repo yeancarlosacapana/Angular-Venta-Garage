@@ -29,11 +29,11 @@ import { TermAndConditionComponent } from './term-and-condition/term-and-conditi
 let config = new AuthServiceConfig([
   {
     id:GoogleLoginProvider.PROVIDER_ID,
-    provider:new GoogleLoginProvider('374570808622-697kuueufh6in17sharsu1tmbhc09j2i.apps.googleusercontent.com')
+    provider:new GoogleLoginProvider('15050891962-dkrp681flf6frpl37emb57pe31tlu8ju.apps.googleusercontent.com')
   },
   {
     id:FacebookLoginProvider.PROVIDER_ID,
-    provider:new FacebookLoginProvider('696511580484139')
+    provider:new FacebookLoginProvider('1506383982784965')
   }
 ]);
 
