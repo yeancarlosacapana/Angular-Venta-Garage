@@ -96,6 +96,7 @@ export class HeaderComponent implements OnInit {
     this.customer.passwd = passwd;
     this.customer.login_media = login_media;
     this.appService.loginCustomer(this.customer).subscribe(rest=>{
+      console.log(rest);
       if(Object.keys(rest.json()).length ===0){
         this.customer = new Customer();
         alert("Usuario y/o contraseña incorrecto");
@@ -111,7 +112,8 @@ export class HeaderComponent implements OnInit {
 
   logout(){
     localStorage.removeItem('user');
-    this.authService.signOut();
+    if(this.customer.login_media == 'social')
+      this.authService.signOut();
     this.customer = new Customer();
     this.router.navigateByUrl("/");
   }
