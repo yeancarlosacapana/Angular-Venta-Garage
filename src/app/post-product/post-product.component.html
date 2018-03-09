@@ -4,18 +4,21 @@
             <div class="column-left">
                 <div class="form-group contenedor-carga-categoria">
                     <label>Seleccione Categoria</label>
-                    <!-- <div class="svg svg-sucategoria"><img src="/img/subcategorias.svg" alt=""></div>
-                    <div class="svg svg-indicador"><img src="/img/indicador.svg" alt=""></div> -->
-                    <select name="id_category_default" class="form-control control-category" [(ngModel)]='addProduct.id_category_default'>
+                    <select name="id_category_default" class="form-control control-category" [(ngModel)]='addProduct.id_category_default' (change)="getCategoryChild(addProduct.id_category_default)">
                         <option *ngFor="let category of listarAllCategory" 
                                 [value]="category.id_category">
                             {{category.category_lang.name}}
                         </option>
                     </select> 
                 </div>
-                <div class="form-group">
-                    <label for="">Nombre Producto</label>
-                    <input type="text" name="name" class="form-control" [(ngModel)]='addProduct.productLang.name'>
+                <div class="form-group contenedor-carga-sub-categoria">
+                    <label>Seleccione Sub Categoria</label>
+                    <select name="id_sub_category" class="form-control control-category" [(ngModel)]='addProduct.id_sub_category'>
+                        <option *ngFor="let category of listSubCategoria" 
+                                [value]="category.id_category">
+                            {{category.name}}
+                        </option>
+                    </select> 
                 </div>
                 <div class="form-group">
                     <p><strong>Ingrese fotos del inmueble</strong></p>
@@ -32,6 +35,10 @@
 
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
             <div class="column-center">
+                <div class="form-group">
+                        <label for="">Nombre Producto</label>
+                        <input type="text" name="name" class="form-control" [(ngModel)]='addProduct.productLang.name'>
+                </div>
                 <div class="form-group">
                     <label>Descripcion del Producto</label>
                     <textarea class="form-control text-area-control"  rows="10" name="descripcion" id="descripcion" name="description"[(ngModel)]='addProduct.productLang.description'>

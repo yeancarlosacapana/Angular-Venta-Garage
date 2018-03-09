@@ -23,6 +23,7 @@ declare var Culqi: any;
 export class PostProductComponent implements OnInit, AfterViewInit {
 
   public listarAllCategory: any[] = [];
+  public listSubCategoria: any[];
   public productLang = ProductLang;
   public oCustomerProduct = new CustomerProduct();
   public customer = new Customer();
@@ -53,7 +54,7 @@ export class PostProductComponent implements OnInit, AfterViewInit {
     if (this.customer === undefined || this.customer == null) {
       return ;
     }
-    this.AppService.getAllCategory().subscribe(rest => {
+    this.AppService.getCategory().subscribe(rest => {
       // console.log('ejecutando');
       this.listarAllCategory = rest.json();
       // console.log(this.listarAllCategory);
@@ -224,6 +225,10 @@ export class PostProductComponent implements OnInit, AfterViewInit {
           this.listImage.push(image);
         }
       }
+      this.addProduct.id_category_default = this.addProduct.categoryProduct[0].id_category;
+      this.getCategoryChild(this.addProduct.id_category_default);
+      if(this.addProduct.categoryProduct[1] !== undefined || this.addProduct.categoryProduct[1] !== null)
+        this.addProduct.id_sub_category = this.addProduct.categoryProduct[1].id_category;
     });
   }
   private getImage(id_image: number, className: boolean, image: string): Image{
@@ -232,5 +237,9 @@ export class PostProductComponent implements OnInit, AfterViewInit {
     this.eImage.image = image;
     this.eImage.class = className;
     return this.eImage;
+  }
+
+  public getCategoryChild(id_category: number): void{
+    this.AppService.getSubCategory(id_category).subscribe(response => this.listSubCategoria = response.json());
   }
 }

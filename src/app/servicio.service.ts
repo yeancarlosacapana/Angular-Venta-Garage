@@ -38,9 +38,9 @@ export class ServicioService {
   public getProductById(id_product){
     return this.http.get(this.Url+'itemProduct/'+id_product);
   }
-  public getAllCategory(){
+  /*public getAllCategory(){
     return this.http.get(this.Url+'getCategory');
-  }
+  }*/
   public registerCustomer(oCustomer){
     return this.http.post(this.Url+'register',oCustomer);
   }
