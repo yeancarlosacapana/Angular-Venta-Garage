@@ -79,7 +79,7 @@ export class HeaderComponent implements OnInit {
         this.signCustomer(this.customer.email,this.customer.passwd,this.customer.login_media);
         jQuery('#registrar').modal('hide');
       }else{
-        console.log('.l.')
+        console.log('Registro exitoso');
       }
       //console.log(rest);
     });
@@ -111,9 +111,9 @@ export class HeaderComponent implements OnInit {
   }
 
   logout(){
-    localStorage.removeItem('user');
     if(this.customer.login_media == 'social')
       this.authService.signOut();
+    localStorage.removeItem('user');
     this.customer = new Customer();
     this.router.navigateByUrl("/");
   }
