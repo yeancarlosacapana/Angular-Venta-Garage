@@ -65,7 +65,7 @@
                 </div>
                 <div class="form-group">
                     <div class="radio">
-                        <label><input type="radio" id="costo" name="pago"  value="cost" [(ngModel)]='addProduct.orderGarage.method_payout' (change)="showCulqi(2)">COSTO</label>
+                        <label><input type="radio" id="costo" name="pago"  value="cost" [(ngModel)]='addProduct.orderGarage.method_payout' (change)="showCulqi(2)">PROMOCIONAR PUBLICACIÓN</label>
                         <p><a href="javascript:void(0)" data-toggle="popover" title="Aviso" data-content="Para impulsar tu producto puedes promocionar agregando un poco por publicación, asi podras vender mas rapido." data-placement="bottom">Más información</a></p>
                     </div>
                 </div> 
@@ -110,7 +110,7 @@
                 </div>
                 <div class="form-group">
                     <div class="checkbox col-lg-12">
-                        <label><input type="checkbox" [checked]="addProduct.id_product > 0" name="terminos" #elemTerminos (change)="accepted(elemTerminos.checked)">Acepta nuestros <span class="terminos"> términos y condiciones</span></label>
+                        <label><input type="checkbox" [checked]="addProduct.id_product > 0" name="terminos" #elemTerminos (change)="accepted(elemTerminos.checked)">Acepta nuestros <a href="javascript:void(0)" data-toggle="modal" data-target="#modal-term-and-condition" class="terminos"> términos y condiciones</a></label>
                     </div>
                 </div>
                 <div class="form-group" *ngIf="!isFree" >
@@ -123,3 +123,103 @@
     </form>
 </div>
 
+<div id="modal-term-and-condition" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Términos y condiciones</h4>
+        </div>
+        <div class="modal-body">
+            <p style="margin-left:0cm; margin-right:0cm; text-align:justify"><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif"><strong>T&eacute;rminos y condiciones de compra de servicio hogaryspacios.com</strong></span></span></p>
+
+            <p style="margin-left:0cm; margin-right:0cm; text-align:justify"><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif">Garage.hogaryspacios.com se preocupa por habilitarte un espacio en donde podr&aacute;s vender tus muebles usados de manera m&aacute;s precisa y directa. Todos los muebles relacionados al hogar lo encontrar&aacute;s en nuestra plataforma virtual. </span></span></p>
+            
+            <p style="margin-left:0cm; margin-right:0cm; text-align:justify"><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif">Nuestra misi&oacute;n es brindarte un espacio en donde tengas la satisfacci&oacute;n de adquirir productos de otras personas que est&eacute;n vendiendo sus muebles usados y por ello, hogaryspacios.com te brinda el siguiente formato de uso de compra de diversos paquetes:</span></span></p>
+            
+            <table align="center" border="1" cellspacing="0" class="MsoTableGrid" style="border-collapse:collapse; border:solid windowtext 1.0pt">
+                <tbody>
+                    <tr>
+                        <td style="background-color:#ffc000; width:93.6pt">
+                        <p style="margin-left:0cm; margin-right:0cm; text-align:justify"><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif">Paquetes</span></span></p>
+                        </td>
+                        <td style="background-color:#ffc000; width:90.7pt">
+                        <p style="margin-left:0cm; margin-right:0cm; text-align:justify"><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif">Cantidad de fotos</span></span></p>
+                        </td>
+                        <td style="background-color:#ffc000; width:42.25pt">
+                        <p style="margin-left:0cm; margin-right:0cm; text-align:justify"><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif">Costo</span></span></p>
+                        </td>
+                        <td style="background-color:#ffc000; width:127.6pt">
+                        <p style="margin-left:0cm; margin-right:0cm; text-align:justify"><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif">Duraci&oacute;n de promoci&oacute;n</span></span></p>
+                        </td>
+                        <td style="background-color:#ffc000; width:87.25pt">
+                        <p style="margin-left:0cm; margin-right:0cm; text-align:justify"><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif">Ubicaci&oacute;n </span></span></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="height:15.4pt; vertical-align:top; width:93.6pt">
+                        <p style="margin-left:0cm; margin-right:0cm; text-align:justify"><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif">Zona impulso</span></span></p>
+                        </td>
+                        <td style="height:15.4pt; vertical-align:top; width:90.7pt">
+                        <p style="margin-left:0cm; margin-right:0cm; text-align:justify"><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif">3 Fotos</span></span></p>
+                        </td>
+                        <td style="height:15.4pt; vertical-align:top; width:42.25pt">
+                        <p style="margin-left:0cm; margin-right:0cm; text-align:justify"><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif">S/.20</span></span></p>
+                        </td>
+                        <td style="height:15.4pt; vertical-align:top; width:127.6pt">
+                        <p style="margin-left:0cm; margin-right:0cm; text-align:justify"><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif">10 d&iacute;as adicionales</span></span></p>
+                        </td>
+                        <td style="height:15.4pt; vertical-align:top; width:87.25pt">
+                        <p style="margin-left:0cm; margin-right:0cm; text-align:justify"><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif">Puesto 3</span></span></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="vertical-align:top; width:93.6pt">
+                        <p style="margin-left:0cm; margin-right:0cm; text-align:justify"><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif">Zona fuego</span></span></p>
+                        </td>
+                        <td style="vertical-align:top; width:90.7pt">
+                        <p style="margin-left:0cm; margin-right:0cm; text-align:justify"><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif">5 Fotos</span></span></p>
+                        </td>
+                        <td style="vertical-align:top; width:42.25pt">
+                        <p style="margin-left:0cm; margin-right:0cm; text-align:justify"><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif">S/.40</span></span></p>
+                        </td>
+                        <td style="vertical-align:top; width:127.6pt">
+                        <p style="margin-left:0cm; margin-right:0cm; text-align:justify"><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif">25 d&iacute;as adicionales</span></span></p>
+                        </td>
+                        <td style="vertical-align:top; width:87.25pt">
+                        <p style="margin-left:0cm; margin-right:0cm; text-align:justify"><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif">Puesto 2</span></span></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="vertical-align:top; width:93.6pt">
+                        <p style="margin-left:0cm; margin-right:0cm; text-align:justify"><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif">Zona garage</span></span></p>
+                        </td>
+                        <td style="vertical-align:top; width:90.7pt">
+                        <p style="margin-left:0cm; margin-right:0cm; text-align:justify"><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif">8 Fotos</span></span></p>
+                        </td>
+                        <td style="vertical-align:top; width:42.25pt">
+                        <p style="margin-left:0cm; margin-right:0cm; text-align:justify"><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif">S/.70</span></span></p>
+                        </td>
+                        <td style="vertical-align:top; width:127.6pt">
+                        <p style="margin-left:0cm; margin-right:0cm; text-align:justify"><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif">50 d&iacute;as adicionales</span></span></p>
+                        </td>
+                        <td style="vertical-align:top; width:87.25pt">
+                        <p style="margin-left:0cm; margin-right:0cm; text-align:justify"><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif">Puesto 1</span></span></p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <p style="margin-left:0cm; margin-right:0cm; text-align:justify">&nbsp;</p>
+            
+            <p style="margin-left:0cm; margin-right:0cm; text-align:justify"><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif">Hogaryspacios.com no se responsabiliza si el producto llega a venderse o no posterior a la publicaci&oacute;n y pago del paquete elegido, sin embargo, hogaryspacios.com se compromete a difundir por canales adwords y posicionar dentro de la web los muebles de segunda.</span></span></p>
+            
+            <p style="margin-left:0cm; margin-right:0cm; text-align:justify"><span style="font-size:11pt"><span style="font-family:Calibri,sans-serif">Toda publicaci&oacute;n debe sujetarse a la siguiente norma: <a [routerLink]="['/term-and-condition']" data-dismiss="modal"> T&eacute;rminos y condiciones </a></span></span></p>                
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
+        </div>
+      </div>
+  
+    </div>
+  </div>
